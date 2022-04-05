@@ -1,3 +1,5 @@
+#  -*- coding: utf-8 -*-
+
 from .log import (
     configure_logging,
 )

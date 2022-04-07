@@ -62,12 +62,6 @@ class AppConfig:
         if not hasattr(self, 'path'):
             self.path = self._path_from_module(app_module)
 
-        # @TODO: in the clossest moment find a solution for this implementaion
-        #parser, (cli_args, unknown_args) = load_arguments()
-        # if cli_args:
-        #     self.args_parse = cli_args
-        self.args_parse = None
-
     def __repr__(self):
         return '<%s: %s>' % (self.__class__.__name__, self.label)
 

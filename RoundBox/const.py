@@ -12,6 +12,9 @@ __version__: Final = f"{__short_version__}.{PATCH_VERSION}"
 REQUIRED_PYTHON_VER: Final[tuple[int, int, int]] = (3, 10, 2)
 REQUIRED_NEXT_PYTHON_VER: Final[tuple[int, int, int]] = (3, 11, 0)
 
+# #### STATES ####
+STATE_UNKNOWN: Final = "unknown"
+
 # #### UNITS OF MEASUREMENT ####
 # Apparent power units
 POWER_VOLT_AMPERE: Final = "VA"
@@ -194,3 +197,13 @@ DATA_RATE_GIGABYTES_PER_SECOND: Final = "GB/s"
 DATA_RATE_KIBIBYTES_PER_SECOND: Final = "KiB/s"
 DATA_RATE_MEBIBYTES_PER_SECOND: Final = "MiB/s"
 DATA_RATE_GIBIBYTES_PER_SECOND: Final = "GiB/s"
+
+LENGTH: Final = "length"
+MASS: Final = "mass"
+PRESSURE: Final = "pressure"
+VOLUME: Final = "volume"
+TEMPERATURE: Final = "temperature"
+SPEED: Final = "speed"
+WIND_SPEED: Final = "wind_speed"
+ILLUMINANCE: Final = "illuminance"
+ACCUMULATED_PRECIPITATION: Final = "accumulated_precipitation"

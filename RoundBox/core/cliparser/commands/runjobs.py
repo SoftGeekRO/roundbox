@@ -88,7 +88,7 @@ class Command(BaseCommand):
         """
         when = options['when']
 
-        setup_logger(logger, self.stdout)
+        #setup_logger(logger, self.stdout)
 
         if options['list_jobs']:
             print_jobs(when, only_scheduled=True, show_when=True, show_appname=True)

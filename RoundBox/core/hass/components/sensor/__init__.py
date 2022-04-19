@@ -12,6 +12,13 @@ from RoundBox.core.hass.helpers.typing import StateType
 logger: Final = logging.getLogger(__name__)
 
 
+class ExtraOptions(TypedDict):
+    """Extra options or information for creating o more customizable interface
+
+    """
+    pass
+
+
 class DeviceInfo(TypedDict):
     """Entity device information for device registry.
 
@@ -144,7 +151,6 @@ class SensorEntityDescription:
     key: str
 
     device_class: SensorDeviceClass | str | None = None
-    last_reset: datetime | None = None
     name: str | None = None
     native_unit_of_measurement: str | None = None
     state_class: SensorStateClass | str | None = None
@@ -159,9 +165,7 @@ class SensorEntity:
     entity_description: SensorEntityDescription
 
     # Entity Properties
-    _attr_attribution: str | None = None
-    _attr_available: bool = True
-    _attr_device_class: str | None
+    _attr_extra_options: ExtraOptions | str | None = None
     _attr_device_info: DeviceInfo | None = None
     _attr_name: str | None
     _attr_unique_id: str | None = None
@@ -171,9 +175,6 @@ class SensorEntity:
     _attr_native_unit_of_measurement: str | None
     _attr_native_value: StateType | date | datetime = None
     _attr_state_class: SensorStateClass | str | None
-    _attr_unit_of_measurement: None = (
-        None  # Subclasses of SensorEntity should not set this
-    )
     _temperature_conversion_reported = False
     _sensor_option_unit_of_measurement: str | None = None
 

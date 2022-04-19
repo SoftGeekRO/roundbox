@@ -9,7 +9,6 @@ except ModuleNotFoundError:
 
 
 class ProcessRuntime(multiprocessing.Process):
-
     def run(self):
 
         try:

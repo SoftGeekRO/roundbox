@@ -89,6 +89,7 @@ def make_style(config_string=""):
 
             def style_func(x):
                 return x
+
         setattr(style, role, style_func)
 
     # For backwards compatibility,

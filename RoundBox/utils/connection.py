@@ -7,7 +7,6 @@ from RoundBox.utils.functional import cached_property
 
 
 class ConnectionProxy:
-
     def __init__(self, connections, alias):
         """Proxy for accessing a connection object's attributes.
 

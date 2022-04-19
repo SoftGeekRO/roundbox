@@ -23,9 +23,7 @@ DEFAULT_LOGGING = {
         'ratelimit': {
             '()': 'RoundBox.utils.log.filters.RateLimiterFilter',
         },
-        'privacy': {
-            '()': 'RoundBox.utils.log.filters.PasswordMaskingFilter'
-        }
+        'privacy': {'()': 'RoundBox.utils.log.filters.PasswordMaskingFilter'},
     },
     'formatters': {
         'RoundBox.server': {
@@ -36,16 +34,16 @@ DEFAULT_LOGGING = {
         'console.info': {
             '()': 'RoundBox.utils.log.formatter.ColoredFormatter',
             'format': u'{log_color}{icon:<2s}{levelname: <7s} {module}.{funcName}:{lineno:d}{reset} '
-                      '{message}',
+            '{message}',
             'style': '{',
-            'icon_style': 'symbol'
+            'icon_style': 'symbol',
         },
         'console.debug': {
             '()': 'RoundBox.utils.log.formatter.ColoredFormatter',
             'format': u'{log_color}{icon:<2s}{levelname: <7s} {asctime} {module}.{funcName}:{lineno:d}{reset} '
-                      '{message}',
+            '{message}',
             'style': '{',
-            'icon_style': 'symbol'
+            'icon_style': 'symbol',
         },
         'verbose': {
             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',

@@ -88,7 +88,7 @@ PALETTES = {
         "ERROR": {},
         "SUCCESS": {},
         "NOTICE": {},
-        "BOLD": {}
+        "BOLD": {},
     },
     DARK_PALETTE: {
         "DEBUG": {"fg": "blue", "opts": ()},
@@ -97,7 +97,7 @@ PALETTES = {
         "ERROR": {"fg": "red", "opts": ("bold",)},
         "SUCCESS": {"fg": "green", "opts": ("bold",)},
         "NOTICE": {"fg": "red"},
-        "BOLD": {"opts": ("bold",)}
+        "BOLD": {"opts": ("bold",)},
     },
     LIGHT_PALETTE: {
         "DEBUG": {"fg": "blue", "opts": ()},
@@ -106,7 +106,7 @@ PALETTES = {
         "ERROR": {"fg": "red", "opts": ("bold",)},
         "SUCCESS": {"fg": "green", "opts": ("bold",)},
         "NOTICE": {"fg": "red"},
-        "BOLD": {"opts": ()}
+        "BOLD": {"opts": ()},
     },
 }
 DEFAULT_PALETTE = DARK_PALETTE

@@ -29,10 +29,7 @@ class Command(BaseCommand):
 
         super().add_arguments(parser)
         parser.add_argument(
-            '--tag',
-            dest='tag',
-            help='Search for specific tags only',
-            action='append'
+            '--tag', dest='tag', help='Search for specific tags only', action='append'
         )
 
     @signalcommand
@@ -69,7 +66,9 @@ class Command(BaseCommand):
                                     if ANNOTATION_END_RE.search(msg.strip()):
                                         msg = ANNOTATION_END_RE.findall(msg.strip())[0][0]
 
-                                    annotation_lines.append("[%3s] %-5s %s" % (i, tag, msg.strip()))
+                                    annotation_lines.append(
+                                        "[%3s] %-5s %s" % (i, tag, msg.strip())
+                                    )
                             if annotation_lines:
                                 self.stdout.write("%s:" % fpath)
                                 for annotation in annotation_lines:

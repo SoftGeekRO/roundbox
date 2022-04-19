@@ -13,8 +13,7 @@ def check_setting_file_log_dir(app_configs, **kwargs):
     if setting and not Path(setting).is_dir():
         return [
             Error(
-                f"The LOG_DIR setting refers to the nonexistent "
-                f"directory '{setting}'.",
+                f"The LOG_DIR setting refers to the nonexistent " f"directory '{setting}'.",
                 _id="files.E001",
             ),
         ]

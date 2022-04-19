@@ -143,14 +143,10 @@ class BaseCache:
         default cache timeout.
         Return True if the value was stored, False otherwise.
         """
-        raise NotImplementedError(
-            "subclasses of BaseCache must provide an add() method"
-        )
+        raise NotImplementedError("subclasses of BaseCache must provide an add() method")
 
     async def aadd(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
-        return await sync_to_async(self.add, thread_sensitive=True)(
-            key, value, timeout, version
-        )
+        return await sync_to_async(self.add, thread_sensitive=True)(key, value, timeout, version)
 
     def get(self, key, default=None, version=None):
         """
@@ -160,9 +156,7 @@ class BaseCache:
         raise NotImplementedError("subclasses of BaseCache must provide a get() method")
 
     async def aget(self, key, default=None, version=None):
-        return await sync_to_async(self.get, thread_sensitive=True)(
-            key, default, version
-        )
+        return await sync_to_async(self.get, thread_sensitive=True)(key, default, version)
 
     def set(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
         """
@@ -172,32 +166,24 @@ class BaseCache:
         raise NotImplementedError("subclasses of BaseCache must provide a set() method")
 
     async def aset(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
-        return await sync_to_async(self.set, thread_sensitive=True)(
-            key, value, timeout, version
-        )
+        return await sync_to_async(self.set, thread_sensitive=True)(key, value, timeout, version)
 
     def touch(self, key, timeout=DEFAULT_TIMEOUT, version=None):
         """
         Update the key's expiry time using timeout. Return True if successful
         or False if the key does not exist.
         """
-        raise NotImplementedError(
-            "subclasses of BaseCache must provide a touch() method"
-        )
+        raise NotImplementedError("subclasses of BaseCache must provide a touch() method")
 
     async def atouch(self, key, timeout=DEFAULT_TIMEOUT, version=None):
-        return await sync_to_async(self.touch, thread_sensitive=True)(
-            key, timeout, version
-        )
+        return await sync_to_async(self.touch, thread_sensitive=True)(key, timeout, version)
 
     def delete(self, key, version=None):
         """
         Delete a key from the cache and return whether it succeeded, failing
         silently.
         """
-        raise NotImplementedError(
-            "subclasses of BaseCache must provide a delete() method"
-        )
+        raise NotImplementedError("subclasses of BaseCache must provide a delete() method")
 
     async def adelete(self, key, version=None):
         return await sync_to_async(self.delete, thread_sensitive=True)(key, version)
@@ -259,15 +245,10 @@ class BaseCache:
         """
         Return True if the key is in the cache and has not expired.
         """
-        return (
-            self.get(key, self._missing_key, version=version) is not self._missing_key
-        )
+        return self.get(key, self._missing_key, version=version) is not self._missing_key
 
     async def ahas_key(self, key, version=None):
-        return (
-            await self.aget(key, self._missing_key, version=version)
-            is not self._missing_key
-        )
+        return await self.aget(key, self._missing_key, version=version) is not self._missing_key
 
     def incr(self, key, delta=1, version=None):
         """
@@ -343,9 +324,7 @@ class BaseCache:
 
     def clear(self):
         """Remove *all* values from the cache at once."""
-        raise NotImplementedError(
-            "subclasses of BaseCache must provide a clear() method"
-        )
+        raise NotImplementedError("subclasses of BaseCache must provide a clear() method")
 
     async def aclear(self):
         return await sync_to_async(self.clear, thread_sensitive=True)()

@@ -1,5 +1,6 @@
 #  -*- coding: utf-8 -*-
 
+
 def is_iterable(x):
     """An implementation independent way of checking for iterables
     :param x:

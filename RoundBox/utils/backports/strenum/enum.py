@@ -21,15 +21,11 @@ class StrEnum(str, Enum):
         if len(values) >= 2:
             # check that encoding argument is a string
             if not isinstance(values[1], str):
-                raise TypeError(
-                    "encoding must be a string, not {values[1]!r}"
-                )
+                raise TypeError("encoding must be a string, not {values[1]!r}")
         if len(values) == 3:
             # check that error's argument is a string
             if not isinstance(values[2], str):
-                raise TypeError(
-                    f"errors must be a string, not {values[2]!r}"
-                )
+                raise TypeError(f"errors must be a string, not {values[2]!r}")
         value = str(*values)
         member = str.__new__(cls, value)
         member._value_ = value

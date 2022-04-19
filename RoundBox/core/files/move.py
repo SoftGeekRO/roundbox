@@ -22,14 +22,10 @@ def _samefile(src, dst):
             return False
 
     # All other platforms: check for same pathname.
-    return os.path.normcase(os.path.abspath(src)) == os.path.normcase(
-        os.path.abspath(dst)
-    )
+    return os.path.normcase(os.path.abspath(src)) == os.path.normcase(os.path.abspath(dst))
 
 
-def file_move_safe(
-    old_file_name, new_file_name, chunk_size=1024 * 64, allow_overwrite=False
-):
+def file_move_safe(old_file_name, new_file_name, chunk_size=1024 * 64, allow_overwrite=False):
     """
     Move a file from one location to another in the safest way possible.
     First, try ``os.rename``, which is simple but will break across filesystems.
@@ -44,8 +40,7 @@ def file_move_safe(
     try:
         if not allow_overwrite and os.access(new_file_name, os.F_OK):
             raise FileExistsError(
-                "Destination file %s exists and allow_overwrite is False."
-                % new_file_name
+                "Destination file %s exists and allow_overwrite is False." % new_file_name
             )
 
         os.rename(old_file_name, new_file_name)

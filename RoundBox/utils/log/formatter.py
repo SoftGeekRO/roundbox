@@ -75,7 +75,7 @@ class ColoredFormatter(logging.Formatter):
         no_color: bool = False,
         force_color: bool = False,
         icons=None,
-        icon_style='rounded'
+        icon_style='rounded',
     ) -> None:
         """Set the format and colors the ColoredFormatter will use.
 

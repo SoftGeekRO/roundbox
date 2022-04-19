@@ -46,18 +46,14 @@ def slugify(text: str | None, *, separator: str = "_") -> str:
 def repr_helper(inp: Any) -> str:
     """Help creating a more readable string representation of objects."""
     if isinstance(inp, Mapping):
-        return ", ".join(
-            f"{repr_helper(key)}={repr_helper(item)}" for key, item in inp.items()
-        )
+        return ", ".join(f"{repr_helper(key)}={repr_helper(item)}" for key, item in inp.items())
     if isinstance(inp, datetime):
         return as_local(inp).isoformat()
 
     return str(inp)
 
 
-def convert(
-    value: _T | None, to_type: Callable[[_T], _U], default: _U | None = None
-) -> _U | None:
+def convert(value: _T | None, to_type: Callable[[_T], _U], default: _U | None = None) -> _U | None:
     """Convert value to to_type, returns default if fails."""
     try:
         return default if value is None else to_type(value)

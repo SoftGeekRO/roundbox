@@ -33,6 +33,7 @@ try:
     except ImportError:
         from pip._internal.download import PipSession  # type:ignore
     from pip._internal.req.req_file import parse_requirements
+
     try:
         from pip._internal.utils.misc import get_installed_distributions  # type:ignore
     except ImportError:
@@ -62,6 +63,7 @@ try:
                 user_only=user_only,
             )
             return [cast(_Dist, dist)._dist for dist in dists]
+
 except ImportError:
     # pip < 10
     try:
@@ -73,6 +75,7 @@ except ImportError:
 
 try:
     import requests
+
     HAS_REQUESTS = True
 except ImportError:
     HAS_REQUESTS = False
@@ -89,18 +92,28 @@ class Command(BaseCommand):
         """
         super().add_arguments(parser)
         parser.add_argument(
-            "-t", "--github-api-token", action="store",
-            dest="github_api_token", help="A github api authentication token."
+            "-t",
+            "--github-api-token",
+            action="store",
+            dest="github_api_token",
+            help="A github api authentication token.",
         )
         parser.add_argument(
-            "-r", "--requirement", action="append", dest="requirements",
-            default=[], metavar="FILENAME",
+            "-r",
+            "--requirement",
+            action="append",
+            dest="requirements",
+            default=[],
+            metavar="FILENAME",
             help="Check all the packages listed in the given requirements "
-                 "file. This option can be used multiple times."
+            "file. This option can be used multiple times.",
         ),
         parser.add_argument(
-            "-n", "--newer", action="store_true", dest="show_newer",
-            help="Also show when newer version then available is installed."
+            "-n",
+            "--newer",
+            action="store_true",
+            dest="show_newer",
+            help="Also show when newer version then available is installed.",
         )
 
     @signalcommand
@@ -121,7 +134,8 @@ class Command(BaseCommand):
             req_files = ["requirements.txt"]
         elif os.path.exists("requirements"):
             req_files = [
-                "requirements/{0}".format(f) for f in os.listdir("requirements")
+                "requirements/{0}".format(f)
+                for f in os.listdir("requirements")
                 if os.path.isfile(os.path.join("requirements", f)) and f.lower().endswith(".txt")
             ]
         elif os.path.exists("requirements-dev.txt"):
@@ -162,7 +176,11 @@ class Command(BaseCommand):
         if HAS_REQUESTS:
             self.check_github()
         else:
-            self.stdout.write(self.style.ERROR("Cannot check github urls. The requests library is not installed. ( pip install requests )"))
+            self.stdout.write(
+                self.style.ERROR(
+                    "Cannot check github urls. The requests library is not installed. ( pip install requests )"
+                )
+            )
         self.check_other()
 
     def _urlopen_as_json(self, url: str, headers=None) -> dict:
@@ -213,7 +231,9 @@ class Command(BaseCommand):
                 available = None
                 while retry:
                     try:
-                        available = pypi.package_releases(req["pip_req"].name, True) or pypi.package_releases(req["pip_req"].name.replace('-', '_'), True)
+                        available = pypi.package_releases(
+                            req["pip_req"].name, True
+                        ) or pypi.package_releases(req["pip_req"].name.replace('-', '_'), True)
                         retry = False
                         sleep(1)  # crude way slow down to avoid HTTPTooManyRequests
                     except Fault as err:
@@ -224,9 +244,13 @@ class Command(BaseCommand):
                 available_version = self._available_version(dist_version, available)
 
                 if not available_version:
-                    msg = self.style.WARN("release is not on pypi (check capitalization and/or --extra-index-url)")
+                    msg = self.style.WARN(
+                        "release is not on pypi (check capitalization and/or --extra-index-url)"
+                    )
                 elif self.options['show_newer'] and dist_version > available_version:
-                    msg = self.style.INFO("{0} available (newer installed)".format(available_version))
+                    msg = self.style.INFO(
+                        "{0} available (newer installed)".format(available_version)
+                    )
                 elif available_version > dist_version:
                     msg = self.style.INFO("{0} available".format(available_version))
                 else:
@@ -287,7 +311,9 @@ class Command(BaseCommand):
             if self.github_api_token:
                 headers["Authorization"] = "token {0}".format(self.github_api_token)
             try:
-                path_parts = urlparse(req_url).path.split("#", 1)[0].strip("/").rstrip("/").split("/")
+                path_parts = (
+                    urlparse(req_url).path.split("#", 1)[0].strip("/").rstrip("/").split("/")
+                )
 
                 if len(path_parts) == 2:
                     user, repo = path_parts
@@ -299,14 +325,16 @@ class Command(BaseCommand):
                     repo += '@' + path_parts[-1].replace('.tar.gz', '').replace('.zip', '')
 
                 else:
-                    self.style.ERROR("\nFailed to parse %r\n" % (req_url, ))
+                    self.style.ERROR("\nFailed to parse %r\n" % (req_url,))
                     continue
             except (ValueError, IndexError) as e:
                 self.stdout.write(self.style.ERROR("\nFailed to parse %r: %s\n" % (req_url, e)))
                 continue
 
             try:
-                test_auth = requests.get("https://api.github.com/RoundBox/", headers=headers).json()
+                test_auth = requests.get(
+                    "https://api.github.com/RoundBox/", headers=headers
+                ).json()
             except HTTPError as e:
                 self.stdout.write("\n%s\n" % str(e))
                 return
@@ -314,8 +342,12 @@ class Command(BaseCommand):
             if "message" in test_auth and test_auth["message"] == "Bad credentials":
                 self.stdout.write(self.style.ERROR("\nGithub API: Bad credentials. Aborting!\n"))
                 return
-            elif "message" in test_auth and test_auth["message"].startswith("API Rate Limit Exceeded"):
-                self.stdout.write(self.style.ERROR("\nGithub API: Rate Limit Exceeded. Aborting!\n"))
+            elif "message" in test_auth and test_auth["message"].startswith(
+                "API Rate Limit Exceeded"
+            ):
+                self.stdout.write(
+                    self.style.ERROR("\nGithub API: Rate Limit Exceeded. Aborting!\n")
+                )
                 return
 
             frozen_commit_sha = None
@@ -330,7 +362,9 @@ class Command(BaseCommand):
                 msg = self.style.ERROR("repo is not frozen")
 
             if frozen_commit_sha:
-                branch_url = "https://api.github.com/repos/{0}/{1}/branches".format(user, repo_name)
+                branch_url = "https://api.github.com/repos/{0}/{1}/branches".format(
+                    user, repo_name
+                )
                 branch_data = requests.get(branch_url, headers=headers).json()
 
                 frozen_commit_url = "https://api.github.com/repos/{0}/{1}/commits/{2}".format(
@@ -338,12 +372,23 @@ class Command(BaseCommand):
                 )
                 frozen_commit_data = requests.get(frozen_commit_url, headers=headers).json()
 
-                if "message" in frozen_commit_data and frozen_commit_data["message"] == "Not Found":
-                    msg = self.style.ERROR("{0} not found in {1}. Repo may be private.".format(frozen_commit_sha[:10], name))
-                elif frozen_commit_data["sha"] in [branch["commit"]["sha"] for branch in branch_data]:
+                if (
+                    "message" in frozen_commit_data
+                    and frozen_commit_data["message"] == "Not Found"
+                ):
+                    msg = self.style.ERROR(
+                        "{0} not found in {1}. Repo may be private.".format(
+                            frozen_commit_sha[:10], name
+                        )
+                    )
+                elif frozen_commit_data["sha"] in [
+                    branch["commit"]["sha"] for branch in branch_data
+                ]:
                     msg = self.style.BOLD("up to date")
                 else:
-                    msg = self.style.INFO("{0} is not the head of any branch".format(frozen_commit_data["sha"][:10]))
+                    msg = self.style.INFO(
+                        "{0} is not the head of any branch".format(frozen_commit_data["sha"][:10])
+                    )
 
             if "dist" in req:
                 pkg_info = "{dist.project_name} {dist.version}".format(dist=req["dist"])
@@ -362,7 +407,9 @@ class Command(BaseCommand):
         :return:
         """
         if self.reqs:
-            self.stdout.write(self.style.ERROR("\nOnly pypi and github based requirements are supported:"))
+            self.stdout.write(
+                self.style.ERROR("\nOnly pypi and github based requirements are supported:")
+            )
             for name, req in self.reqs.items():
                 if "dist" in req:
                     pkg_info = "{dist.project_name} {dist.version}".format(dist=req["dist"])
@@ -370,4 +417,10 @@ class Command(BaseCommand):
                     pkg_info = "{url}".format(url=req["url"])
                 else:
                     pkg_info = "unknown package"
-                self.stdout.write(self.style.BOLD("{pkg_info:40} is not a pypi or github requirement".format(pkg_info=pkg_info)))
+                self.stdout.write(
+                    self.style.BOLD(
+                        "{pkg_info:40} is not a pypi or github requirement".format(
+                            pkg_info=pkg_info
+                        )
+                    )
+                )

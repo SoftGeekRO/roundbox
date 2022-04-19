@@ -26,15 +26,12 @@ class ImproperlyConfigured(Exception):
 
 
 class SuspiciousOperation(Exception):
-    """The user did something suspicious
-
-    """
+    """The user did something suspicious"""
 
 
 class SuspiciousFileOperation(SuspiciousOperation):
-    """A Suspicious filesystem operation was attempted"
+    """A Suspicious filesystem operation was attempted" """
 
-    """
     pass
 
 

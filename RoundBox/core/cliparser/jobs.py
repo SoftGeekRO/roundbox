@@ -83,7 +83,9 @@ def find_jobs(jobs_dir):
     :return:
     """
     try:
-        return [f[:-3] for f in os.listdir(jobs_dir) if not f.startswith('_') and f.endswith(".py")]
+        return [
+            f[:-3] for f in os.listdir(jobs_dir) if not f.startswith('_') and f.endswith(".py")
+        ]
     except OSError:
         return []
 
@@ -146,7 +148,16 @@ def get_jobs(when=None, only_scheduled=False):
     _jobs = {}
 
     for app_name in [app.name for app in apps.get_app_configs()]:
-        scandirs = (None, 'minutely', 'quarter_hourly', 'hourly', 'daily', 'weekly', 'monthly', 'yearly')
+        scandirs = (
+            None,
+            'minutely',
+            'quarter_hourly',
+            'hourly',
+            'daily',
+            'weekly',
+            'monthly',
+            'yearly',
+        )
         if when:
             scandirs = None, when
         for subdir in scandirs:
@@ -187,7 +198,9 @@ def get_job(app_name, job_name):
         raise KeyError("Job not found: %s" % job_name)
 
 
-def print_jobs(when=None, only_scheduled=False, show_when=True, show_appname=False, show_header=True):
+def print_jobs(
+    when=None, only_scheduled=False, show_when=True, show_appname=False, show_header=True
+):
     """
 
     :param when:

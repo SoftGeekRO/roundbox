@@ -3,4 +3,3 @@
 from RoundBox.dispatch import Signal
 
 request_finished = Signal()
-

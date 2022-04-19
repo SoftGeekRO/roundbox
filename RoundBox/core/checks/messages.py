@@ -11,7 +11,7 @@ CRITICAL = 50
 class CheckMessage:
     """ """
 
-    def __init__(self, level, msg: str, hint: str =None, obj=None, _id=None):
+    def __init__(self, level, msg: str, hint: str = None, obj=None, _id=None):
         """
 
         :param level: The severity of the message. Use one of the predefined values: DEBUG, INFO, WARNING, ERROR,
@@ -76,40 +76,35 @@ class CheckMessage:
 
 
 class Debug(CheckMessage):
-    """
+    """ """
 
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(DEBUG, *args, **kwargs)
 
 
 class Info(CheckMessage):
-    """
+    """ """
 
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(INFO, *args, **kwargs)
 
 
 class Warning(CheckMessage):
-    """
+    """ """
 
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(WARNING, *args, **kwargs)
 
 
 class Error(CheckMessage):
-    """
+    """ """
 
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(ERROR, *args, **kwargs)
 
 
 class Critical(CheckMessage):
-    """
+    """ """
 
-    """
     def __init__(self, *args, **kwargs):
         super().__init__(CRITICAL, *args, **kwargs)

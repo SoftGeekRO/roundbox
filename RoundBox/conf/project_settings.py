@@ -10,7 +10,6 @@ ENVIRONMENT_VARIABLE = "ROUNDBOX_SETTINGS_MODULE"
 
 
 class LazySettings(LazyObject):
-
     def _setup(self, name=None):
         settings_module = os.environ.get(ENVIRONMENT_VARIABLE)
         if not settings_module:

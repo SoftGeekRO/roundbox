@@ -378,4 +378,3 @@ def _datetime_ambiguous(dattim: dt.datetime) -> bool:
     assert dattim.tzinfo is not None
     opposite_fold = dattim.replace(fold=not dattim.fold)
     return _datetime_exists(dattim) and dattim.utcoffset() != opposite_fold.utcoffset()
-

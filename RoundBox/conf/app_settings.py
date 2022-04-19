@@ -18,9 +18,7 @@ from RoundBox.utils.functional import Settings
 
 
 class ApplicationConfig:
-    """
-
-    """
+    """ """
 
     def __init__(self):
         self._modules = None
@@ -107,9 +105,7 @@ class ApplicationConfig:
 
                 for other_module in self._modules:
                     if hasattr(other_module, setting_name):
-                        error_message = (
-                            f"The '{setting_name}' setting is already defined by the '{other_module}' module."
-                        )
+                        error_message = f"The '{setting_name}' setting is already defined by the '{other_module}' module."
 
                         if self._strict:
                             raise AttributeError(error_message)

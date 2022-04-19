@@ -31,8 +31,8 @@ from .messages import (
 
 from .registry import Tags, register, run_checks, tag_exists
 
-import RoundBox.core.checks.files # NOQA isort:skip
-import RoundBox.core.checks.dependency # NOQA isort:skip
+import RoundBox.core.checks.files  # NOQA isort:skip
+import RoundBox.core.checks.dependency  # NOQA isort:skip
 
 __all__ = [
     "CheckMessage",
@@ -49,5 +49,5 @@ __all__ = [
     "register",
     "run_checks",
     "tag_exists",
-    "Tags"
+    "Tags",
 ]

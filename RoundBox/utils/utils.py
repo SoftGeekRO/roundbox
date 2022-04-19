@@ -66,7 +66,9 @@ def load_arguments() -> tuple[ArgumentParser, tuple[Namespace, list[str]]]:
     parser.add_argument("--influxdb-token", type=str, default="my-token", help="InfluxDB token")
     parser.add_argument("--influxdb-org", type=str, default="my-org", help="Influxdb organization")
 
-    parser.add_argument("--ignore-os-check", action="store_true", help="Skips validation of operating system")
+    parser.add_argument(
+        "--ignore-os-check", action="store_true", help="Skips validation of operating system"
+    )
 
     parser.add_argument(
         "--skip-dependency",
@@ -161,8 +163,7 @@ def validate_os() -> bool:
 
 
 def validate_python() -> tuple[tuple, tuple[int, int, int]] | tuple[None, None]:
-    """Validate that the right Python version is running.
-    """
+    """Validate that the right Python version is running."""
     if sys.version_info[:3] < REQUIRED_PYTHON_VER:
         return sys.version_info[:3], REQUIRED_PYTHON_VER
 

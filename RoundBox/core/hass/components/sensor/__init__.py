@@ -13,16 +13,13 @@ logger: Final = logging.getLogger(__name__)
 
 
 class ExtraOptions(TypedDict):
-    """Extra options or information for creating o more customizable interface
+    """Extra options or information for creating o more customizable interface"""
 
-    """
     pass
 
 
 class DeviceInfo(TypedDict):
-    """Entity device information for device registry.
-
-    """
+    """Entity device information for device registry."""
 
     default_manufacturer: str
     default_model: str
@@ -158,9 +155,7 @@ class SensorEntityDescription:
 
 
 class SensorEntity:
-    """Base class for sensor entities.
-
-    """
+    """Base class for sensor entities."""
 
     entity_description: SensorEntityDescription
 
@@ -245,4 +240,3 @@ class SensorEntity:
         if hasattr(self, "entity_description"):
             return self.entity_description.device_class
         return None
-

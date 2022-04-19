@@ -19,7 +19,8 @@ def check_dependency_packages(app_configs, **kwargs):
     if packages:
         return [
             Error(
-                f"To run the RoundBox you must install the fallowing packages: {packages} ", _id="runtime.E001",
+                f"To run the RoundBox you must install the fallowing packages: {packages} ",
+                _id="runtime.E001",
             ),
         ]
 
@@ -37,7 +38,8 @@ def check_validate_os(app_configs, **kwargs):
     if not validate_os():
         return [
             Error(
-                f"To use this framework you have to run it from a Linux distribution", _id="runtime.E001",
+                f"To use this framework you have to run it from a Linux distribution",
+                _id="runtime.E001",
             ),
         ]
 

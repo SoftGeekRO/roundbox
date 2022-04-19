@@ -292,11 +292,8 @@ def restart_with_reloader():
 
 
 class BaseReloader:
-
     def __init__(self):
-        """
-
-        """
+        """ """
         self.extra_files = set()
         self.directory_globs = defaultdict(set)
         self._stop_condition = threading.Event()

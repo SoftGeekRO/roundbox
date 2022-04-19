@@ -27,8 +27,9 @@ class Command(BaseCommand):
         :param parser:
         :return:
         """
-        parser.add_argument('--path', '-p', action='store', dest='path',
-                            help='Specify path to recurse into')
+        parser.add_argument(
+            '--path', '-p', action='store', dest='path', help='Specify path to recurse into'
+        )
 
     @signalcommand
     def handle(self, *args, **options) -> None:

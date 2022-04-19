@@ -13,6 +13,7 @@ def _make_writeable(filename):
     read-only.
     """
     import stat
+
     if sys.platform.startswith('java'):
         # On Jython there is no os.access()
         return
@@ -38,7 +39,9 @@ def setup_logger(logger, stream, filename=None, fmt=None):
         if filename:
             outfile = logging.FileHandler(filename)
             outfile.setLevel(logging.INFO)
-            outfile.setFormatter(logging.Formatter("%(asctime)s " + (fmt if fmt else '%(message)s')))
+            outfile.setFormatter(
+                logging.Formatter("%(asctime)s " + (fmt if fmt else '%(message)s'))
+            )
             logger.addHandler(outfile)
 
 
@@ -54,4 +57,5 @@ def signalcommand(func):
         ret = func(self, *args, **kwargs)
         post_command.send(self.__class__, args=args, kwargs=kwargs, outcome=ret)
         return ret
+
     return inner

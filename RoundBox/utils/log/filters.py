@@ -52,9 +52,7 @@ class RateLimiterFilter(logging.Filter):
 
 
 class PasswordMaskingFilter(logging.Filter):
-    """Filter and mask the password values from dictionary that are listed in log
-
-    """
+    """Filter and mask the password values from dictionary that are listed in log"""
 
     def filter(self, record) -> bool:
         """The call signature matches string interpolation: args can be a tuple or a lone dict

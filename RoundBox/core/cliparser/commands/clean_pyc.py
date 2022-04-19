@@ -26,13 +26,16 @@ class Command(BaseCommand):
         :return:
         """
         parser.add_argument(
-            '--optimize', '-o', '-O', action='store_true',
-            dest='optimize', default=False,
-            help='Remove optimized python bytecode files'
+            '--optimize',
+            '-o',
+            '-O',
+            action='store_true',
+            dest='optimize',
+            default=False,
+            help='Remove optimized python bytecode files',
         )
         parser.add_argument(
-            '--path', '-p', action='store', dest='path',
-            help='Specify path to recurse into'
+            '--path', '-p', action='store', dest='path', help='Specify path to recurse into'
         )
 
     @signalcommand

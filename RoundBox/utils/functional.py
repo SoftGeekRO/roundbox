@@ -23,8 +23,7 @@ class cached_property:
     @staticmethod
     def func(instance):
         raise TypeError(
-            "Cannot use cached_property instance without calling "
-            "__set_name__() on it."
+            "Cannot use cached_property instance without calling " "__set_name__() on it."
         )
 
     def __init__(self, func):
@@ -233,9 +232,8 @@ class SimpleLazyObject(LazyObject):
 
 
 class Settings:
-    """
+    """ """
 
-    """
     def __init__(self, settings_module: str, set_global_settings: bool = True):
         """This class is used for settings objects and deals
         with importing and checks the explicit settings
@@ -257,9 +255,7 @@ class Settings:
             print(f"No project {self.SETTINGS_MODULE} module found.")
             sys.exit(1)
 
-        tuple_settings = (
-            "INSTALLED_APPS",
-        )
+        tuple_settings = ("INSTALLED_APPS",)
         self._explicit_settings = set()
         for setting in dir(mod):
             if setting.isupper():

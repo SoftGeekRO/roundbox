@@ -18,8 +18,12 @@ class Command(BaseCommand):
         parser.add_argument('app_name', nargs='?')
         parser.add_argument('job_name', nargs='?')
         parser.add_argument(
-            '--list', '-l', action="store_true", dest="list_jobs",
-            default=False, help="List all jobs with their description"
+            '--list',
+            '-l',
+            action="store_true",
+            dest="list_jobs",
+            default=False,
+            help="List all jobs with their description",
         )
 
     def runjob(self, app_name, job_name, options):

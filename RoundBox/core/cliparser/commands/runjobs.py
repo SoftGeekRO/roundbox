@@ -16,13 +16,14 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         super().add_arguments(parser)
+        parser.add_argument('when', nargs='?', help="options: %s" % ', '.join(self.when_options))
         parser.add_argument(
-            'when', nargs='?',
-            help="options: %s" % ', '.join(self.when_options)
-        )
-        parser.add_argument(
-            '--list', '-l', action="store_true", dest="list_jobs",
-            default=False, help="List all jobs with their description"
+            '--list',
+            '-l',
+            action="store_true",
+            dest="list_jobs",
+            default=False,
+            help="List all jobs with their description",
         )
 
     def usage_msg(self):
@@ -88,7 +89,7 @@ class Command(BaseCommand):
         """
         when = options['when']
 
-        #setup_logger(logger, self.stdout)
+        # setup_logger(logger, self.stdout)
 
         if options['list_jobs']:
             print_jobs(when, only_scheduled=True, show_when=True, show_appname=True)

@@ -61,3 +61,7 @@ exclude = '''
   )/
 )
 '''
+
+[tool.isort]
+profile = "black"
+skip = ["{{roundbox.project_name}}",".venv"]

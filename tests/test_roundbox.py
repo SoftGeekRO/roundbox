@@ -2,10 +2,10 @@
 import os
 import shlex
 import subprocess
-import pytest
-
 from contextlib import contextmanager
 from pathlib import Path
+
+import pytest
 
 
 def file_contains_text(file: Path, text: str) -> bool:
@@ -29,10 +29,12 @@ def test_cicd_contains_pypi_secrets(script_loc):
     :return:
     """
 
-    assert file_contains_text(script_loc.joinpath(".github/workflows/on-release-main.yml"), "PYPI_API_TOKEN"), \
-        "The PYPI_API_TOKEN is missing from the GitHub workflow"
-    assert file_contains_text(script_loc.joinpath("Makefile"), "build-and-publish"), \
-        "From the Makefile is missing the build-and-publish command"
+    assert file_contains_text(
+        script_loc.joinpath(".github/workflows/on-release-main.yml"), "PYPI_API_TOKEN"
+    ), "The PYPI_API_TOKEN is missing from the GitHub workflow"
+    assert file_contains_text(
+        script_loc.joinpath("Makefile"), "build-and-publish"
+    ), "From the Makefile is missing the build-and-publish command"
 
 
 # def test_dont_publish(script_loc):
@@ -45,15 +47,19 @@ def test_cicd_contains_pypi_secrets(script_loc):
 #         script_loc.joinpath(".github/workflows/on-release-main.yml"), "make build-and-publish"
 #     )
 
+
 def test_mkdocs(script_loc):
     """
 
     :param script_loc:
     :return:
     """
-    assert file_contains_text(script_loc.joinpath(".github/workflows/on-release-main.yml"), "mkdocs gh-deploy")
+    assert file_contains_text(
+        script_loc.joinpath(".github/workflows/on-release-main.yml"), "mkdocs gh-deploy"
+    )
     assert file_contains_text(script_loc.joinpath("Makefile"), "docs:")
     assert os.path.isdir(script_loc.joinpath("docs"))
+
 
 #
 # def test_not_mkdocs(cookies, tmp_path):

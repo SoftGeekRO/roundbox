@@ -6,7 +6,7 @@
     "project_slug": "{{roundbox.project_name|lower|replace('-', '_')}}",
     "project_description": "This is a template repository for Python projects that use Poetry for their dependency management.",
     "include_github_actions": ["y","n"],
-    "publish_to": ["pypi", "artifactory", "none"],
+    "publish_to": ["pypi", "none"],
     "mkdocs": ["y", "n"],
     "tox": ["y","n"],
 

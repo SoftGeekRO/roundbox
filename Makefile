@@ -38,7 +38,7 @@ lint: ## Check code formatting using isort and black.
 
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
-	@pytest --doctest-modules tests
+	@pytest -s --doctest-modules tests
 
 build: clean-build ## Build wheel file using poetry
 	@echo "🚀 Creating wheel file"
@@ -57,7 +57,7 @@ clean-pyc: ## Remove Python file artifacts
 
 publish: ## publish a release to pypi.
 	@echo "🚀 Publishing: Dry run."
-	@poetry config pypi-token.pypi $(PYPI_TOKEN)
+	@poetry config pypi-token.pypi $(PYPI_API_TOKEN)
 	@poetry publish --dry-run
 	@echo "🚀 Publishing."
 	@poetry publish

@@ -9,6 +9,7 @@
     "publish_to": ["pypi", "artifactory", "none"],
     "mkdocs": ["y", "n"],
     "tox": ["y","n"],
+
     "open_source_license": [
       "MIT license",
         "BSD license",

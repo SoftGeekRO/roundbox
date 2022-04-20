@@ -1,4 +1,3 @@
-# checkout-and-yarn/action.yml
 
 name: "setup-poetry-env"
 description: "Composite action to setup the Python and poetry environment."

@@ -1,7 +1,15 @@
+
 PYTHON_VERSION := 3.10.2
 
 PROJECT_NAME := $(shell python3 setup.py --name)
 PROJECT_VERSION := $(shell python3 setup.py --version)
+
+# Included custom configs change the value of MAKEFILE_LIST
+# Extract the required reference beforehand so we can use it for help target
+MAKEFILE_NAME := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+
+# Application
+APP_ROOT    := $(abspath $(lastword $(MAKEFILE_NAME))/..)
 
 BOLD := \033[1m
 RESET := \033[0m
@@ -25,6 +33,7 @@ format: ## Format code using isort and black.
 .PHONY: lint
 lint: ## Check code formatting using isort and black.
 	@echo "🚀 Checking code formatting: Running isort and black"
+	@echo $(APP_ROOT)
 	@isort --check-only --diff .
 	@black --check .
 
@@ -38,6 +47,14 @@ build: clean-build ## Build wheel file using poetry
 
 clean-build: ## clean build artifacts
 	@rm -rf dist
+
+.PHONY: clean-pyc
+clean-pyc: ## Remove Python file artifacts
+	@echo "Cleaning Python artifacts..."
+	@find . -type f -name '*.pyc' -exec rm -f {} +
+	@find . -type f -name '*.pyo' -exec rm -f {} +
+	@find . -type f -name '*~' -exec rm -f {} +
+	@find . -type f -name '__pycache__' -exec rm -fr {} +
 
 publish: ## publish a release to pypi.
 	@echo "🚀 Publishing: Dry run."

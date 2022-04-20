@@ -29,6 +29,15 @@ tox = "^3.25.0"
 mkdocs = "^1.3.0"
 mkdocs-material = "^8.2.9"
 
+[tool.poetry.extras]
+
+[tool.poetry.plugins]
+
+[tool.poetry.scripts]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/soulraven/roundbox/issues"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
@@ -64,4 +73,3 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-skip = ["{{roundbox.project_name}}",".venv"]

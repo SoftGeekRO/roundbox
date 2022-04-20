@@ -1,4 +1,3 @@
-# checkout-and-yarn/action.yml
 
 name: 'run-checks'
 description: 'Composite action to run checks for code formatting and to run the unittests.'

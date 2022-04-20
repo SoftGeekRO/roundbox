@@ -8,21 +8,19 @@ import json
 import os
 import re
 from distutils.version import LooseVersion
-from urllib.parse import urlparse
+from time import sleep
 from urllib.error import HTTPError
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
-from xmlrpc.client import ServerProxy, Fault
+from xmlrpc.client import Fault, ServerProxy
 
 import pip
-from time import sleep
-
 from pip._internal.req import InstallRequirement
 
 from RoundBox.conf.project_settings import settings
 from RoundBox.core.cliparser.base import BaseCommand, CommandError
 from RoundBox.core.cliparser.color import color_style
 from RoundBox.core.cliparser.utils import signalcommand
-
 
 if LooseVersion(pip.__version__) >= LooseVersion('19.0'):
     from pip._internal.req.constructors import install_req_from_line  # noqa

@@ -9,7 +9,6 @@ import re
 
 from RoundBox.conf.project_settings import settings
 from RoundBox.core.cliparser.base import BaseCommand, CommandError
-
 from RoundBox.core.cliparser.utils import signalcommand
 
 ANNOTATION_RE = re.compile(r"\{?#[\s]*?(TODO|FIXME|BUG|HACK|WARNING|NOTE|XXX)[\s:]?(.+)")

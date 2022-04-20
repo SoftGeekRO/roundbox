@@ -1,16 +1,15 @@
 #  -*- coding: utf-8 -*-
 
 
+import argparse
 import os
 import sys
-import argparse
-
 from argparse import ArgumentParser, HelpFormatter
 from io import TextIOBase
 
-from RoundBox.core.cliparser.color import color_style, no_style
-from RoundBox.core import checks
 from RoundBox.const import __version__
+from RoundBox.core import checks
+from RoundBox.core.cliparser.color import color_style, no_style
 
 ALL_CHECKS = "__all__"
 

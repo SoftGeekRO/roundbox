@@ -1,13 +1,13 @@
 #  -*- coding: utf-8 -*-
 
+import copy
+import importlib
+import operator
 import os
 import sys
-import copy
-import operator
-import importlib
 
-from RoundBox.core.exceptions import ImproperlyConfigured
 from RoundBox.conf import global_settings
+from RoundBox.core.exceptions import ImproperlyConfigured
 
 
 class cached_property:

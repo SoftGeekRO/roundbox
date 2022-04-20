@@ -8,11 +8,11 @@
 from __future__ import annotations
 
 import bisect
-from contextlib import suppress
 import datetime as dt
 import re
-from typing import Any
 import zoneinfo
+from contextlib import suppress
+from typing import Any
 
 import ciso8601
 

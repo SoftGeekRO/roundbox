@@ -2,19 +2,17 @@
 
 # Code inspired by: https://github.com/adammck/djappsettings
 
+import importlib
 import sys
 import traceback
-import importlib
 from pathlib import Path
 
-
-# from loguru import logger
-
+from RoundBox.apps.config import AppConfig
 from RoundBox.conf import global_settings
 from RoundBox.conf.project_settings import settings
-
-from RoundBox.apps.config import AppConfig
 from RoundBox.utils.functional import Settings
+
+# from loguru import logger
 
 
 class ApplicationConfig:

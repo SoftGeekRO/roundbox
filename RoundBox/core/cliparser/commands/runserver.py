@@ -4,9 +4,9 @@
 # All rights reserved.
 # https://github.com/django-extensions/django-extensions/blob/main/LICENSE
 
+import errno
 import os
 import sys
-import errno
 
 from RoundBox.conf.project_settings import settings
 from RoundBox.core.cliparser.base import BaseCommand, CommandError

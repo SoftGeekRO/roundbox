@@ -24,7 +24,7 @@ import warnings
 from collections import Counter, defaultdict
 from functools import partial
 
-from RoundBox.core.exceptions import ImproperlyConfigured, AppRegistryNotReady
+from RoundBox.core.exceptions import AppRegistryNotReady, ImproperlyConfigured
 
 from .config import AppConfig
 

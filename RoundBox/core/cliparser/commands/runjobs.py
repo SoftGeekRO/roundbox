@@ -49,8 +49,8 @@ class Command(BaseCommand):
         :return:
         """
         # Thanks for Ian Holsman for the idea and code
-        from RoundBox.core.cliparser import signals
         from RoundBox.conf.project_settings import settings
+        from RoundBox.core.cliparser import signals
 
         verbosity = options["verbosity"]
         for app_name in settings.INSTALLED_APPS:

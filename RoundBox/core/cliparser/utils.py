@@ -1,8 +1,8 @@
 #  -*- coding: utf-8 -*-
 
-import sys
-import os
 import logging
+import os
+import sys
 
 from RoundBox.core.cliparser.signals import post_command, pre_command
 

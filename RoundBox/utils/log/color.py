@@ -1,8 +1,7 @@
 #  -*- coding: utf-8 -*-
 
 import logging
-
-from typing import Mapping, Optional, Literal, IO, Any
+from typing import IO, Any, Literal, Mapping, Optional
 
 # Type aliases used in function signatures.
 EscapeCodes = Mapping[str, str]

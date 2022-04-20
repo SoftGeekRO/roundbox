@@ -1,8 +1,9 @@
 #  -*- coding: utf-8 -*-
 
 import threading
-import schedule
 import time
+
+import schedule
 
 
 def run_continuously(interval=1):

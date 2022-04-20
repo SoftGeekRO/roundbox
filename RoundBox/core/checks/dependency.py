@@ -1,7 +1,7 @@
 #  -*- coding: utf-8 -*-
 
 from RoundBox.conf.project_settings import settings
-from RoundBox.utils.utils import validate_os, validate_python, check_dependency
+from RoundBox.utils.utils import check_dependency, validate_os, validate_python
 
 from . import Error, Tags, register
 

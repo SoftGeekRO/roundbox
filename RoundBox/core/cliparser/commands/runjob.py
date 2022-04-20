@@ -2,7 +2,6 @@
 import logging
 
 from RoundBox.core.cliparser.base import BaseCommand
-
 from RoundBox.core.cliparser.jobs import get_job, print_jobs
 from RoundBox.core.cliparser.utils import setup_logger, signalcommand
 

@@ -1,6 +1,7 @@
 #  -*- coding: utf-8 -*-
 
 import functools
+
 from loguru import logger
 
 from RoundBox.conf.project_settings import settings

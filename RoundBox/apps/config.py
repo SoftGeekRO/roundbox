@@ -22,7 +22,6 @@ import os
 from importlib import import_module
 
 from RoundBox.core.exceptions import ImproperlyConfigured
-
 from RoundBox.utils.module_loading import import_string, module_has_submodule
 from RoundBox.utils.utils import load_arguments
 

@@ -1,14 +1,12 @@
 #  -*- coding: utf-8 -*-
 
+import logging
+import logging.config
 import os
 import sys
 from threading import RLock
-import logging
-import logging.config
-
 
 from RoundBox.utils.utils import import_string
-
 
 DEFAULT_LOGGING = {
     'version': 1,

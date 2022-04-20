@@ -1,5 +1,11 @@
 PYTHON_VERSION := 3.10.2
 
+PROJECT_NAME := $(shell python3 setup.py --name)
+PROJECT_VERSION := $(shell python3 setup.py --version)
+
+BOLD := \033[1m
+RESET := \033[0m
+
 bake: ## bake without inputs and overwrite if exists.
 	@cookiecutter --no-input . --overwrite-if-exists
 
@@ -16,6 +22,7 @@ format: ## Format code using isort and black.
 	@isort .
 	@black .
 
+.PHONY: lint
 lint: ## Check code formatting using isort and black.
 	@echo "🚀 Checking code formatting: Running isort and black"
 	@isort --check-only --diff .
@@ -50,7 +57,6 @@ docs: ## Build and serve the documentation
 .PHONY: docs
 
 .PHONY: help
-
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 

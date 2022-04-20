@@ -5,8 +5,8 @@
 # https://github.com/django-extensions/django-extensions/blob/main/LICENSE
 
 import os
-import sys
 import shutil
+import sys
 
 from RoundBox.core.cliparser.base import AppCommand
 from RoundBox.core.cliparser.color import color_style

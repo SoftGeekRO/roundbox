@@ -9,7 +9,6 @@ import json
 
 from RoundBox.conf.project_settings import settings
 from RoundBox.core.cliparser.base import BaseCommand, CommandError
-
 from RoundBox.core.cliparser.utils import signalcommand
 
 

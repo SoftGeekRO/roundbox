@@ -4,28 +4,27 @@
 # Praise the OpenSource and devs from Django framework and the community
 # url: https://github.com/django/django/tree/main/django/core/management
 
-import os
-import sys
-import pkgutil
 import functools
-
-from importlib import import_module
+import os
+import pkgutil
+import sys
 from collections import defaultdict
 from difflib import get_close_matches
+from importlib import import_module
 
 import RoundBox
 from RoundBox.apps import apps
 from RoundBox.conf.project_settings import settings
-from RoundBox.core.exceptions import ImproperlyConfigured
+from RoundBox.const import __version__
 from RoundBox.core.cliparser.base import (
     BaseCommand,
-    CommandParser,
     CommandError,
+    CommandParser,
     handle_default_options,
 )
 from RoundBox.core.cliparser.color import color_style
+from RoundBox.core.exceptions import ImproperlyConfigured
 from RoundBox.utils import autoreload
-from RoundBox.const import __version__
 
 
 def find_commands(cliparser_dir):

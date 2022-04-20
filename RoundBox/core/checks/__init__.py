@@ -28,7 +28,6 @@ from .messages import (
     Info,
     Warning,
 )
-
 from .registry import Tags, register, run_checks, tag_exists
 
 import RoundBox.core.checks.files  # NOQA isort:skip

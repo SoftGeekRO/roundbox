@@ -1,9 +1,8 @@
 #  -*- coding: utf-8 -*-
 
-import time
 import logging
+import time
 from hashlib import md5
-
 
 from RoundBox.conf.project_settings import settings
 from RoundBox.core.cache import cache

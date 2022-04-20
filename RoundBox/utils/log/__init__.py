@@ -1,11 +1,8 @@
 #  -*- coding: utf-8 -*-
 
-from .log import (
-    configure_logging,
-)
-
 from .filters import RequireDebugFalse, RequireDebugTrue
-from .formatter import ServerFormatter, ColoredFormatter
+from .formatter import ColoredFormatter, ServerFormatter
+from .log import configure_logging
 
 __all__ = [
     'ServerFormatter',

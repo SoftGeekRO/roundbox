@@ -1,14 +1,14 @@
 #  -*- coding: utf-8 -*-
 
-import os
 import logging
-
+import os
 from pprint import pformat
-from typing import Mapping, Optional, Literal, IO, Any
+from typing import IO, Any, Literal, Mapping, Optional
 
 from RoundBox.core.cliparser.color import color_style
 from RoundBox.utils.log.filters import PasswordMaskingFilter
 
+from . import themes
 from .color import (
     ColoredRecord,
     EscapeCodes,
@@ -18,8 +18,6 @@ from .color import (
     escape_codes,
     parse_colors,
 )
-
-from . import themes
 
 # The default format to use for each style
 default_formats = {

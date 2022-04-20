@@ -14,8 +14,6 @@ from RoundBox.core.cache.backends.base import (
 from RoundBox.utils.connection import BaseConnectionHandler, ConnectionProxy
 from RoundBox.utils.module_loading import import_string
 
-from RoundBox.utils.module_loading import import_string
-
 __all__ = [
     "cache",
     "caches",

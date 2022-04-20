@@ -1,16 +1,15 @@
 #  -*- coding: utf-8 -*-
 
-import sys
-import re
 import argparse
-import textwrap
-import pkg_resources
 import pathlib
-
-from argparse import Namespace, ArgumentParser
-
+import re
+import sys
+import textwrap
+from argparse import ArgumentParser, Namespace
 from functools import lru_cache
 from importlib import import_module
+
+import pkg_resources
 
 from RoundBox.const import REQUIRED_PYTHON_VER, __version__
 

@@ -1,12 +1,11 @@
 #  -*- coding: utf-8 -*-
 
 import re
+from collections.abc import Callable, Iterable, KeysView, Mapping
+from datetime import datetime
+from typing import Any, TypeVar
 
 import slugify as unicode_slug
-
-from typing import Any, TypeVar
-from datetime import datetime
-from collections.abc import Callable, Iterable, KeysView, Mapping
 
 from .dt import as_local
 

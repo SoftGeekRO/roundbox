@@ -33,9 +33,8 @@ format: ## Format code using isort and black.
 .PHONY: lint
 lint: ## Check code formatting using isort and black.
 	@echo "🚀 Checking code formatting: Running isort and black"
-	@echo $(APP_ROOT)
-	@isort --check-only --diff .
-	@black --check .
+	@isort --check-only --diff $(APP_ROOT)
+	@black --check $(APP_ROOT)
 
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"

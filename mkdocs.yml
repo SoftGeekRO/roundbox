@@ -6,6 +6,7 @@ site_author: Zaharia Constantin
 
 nav:
   - Home: index.md
+  - Jobs: jobs/jobs_scheduling.md
 plugins:
   - search
 copyright: Maintained by <a href="https://progeek.ro">SoulRaven</a>.

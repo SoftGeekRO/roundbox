@@ -4,6 +4,8 @@
 import setuptools
 from setuptools import setup
 
+from RoundBox import __version__
+
 
 def parse_requirements(filename):
     """load requirements from a pip requirements file
@@ -23,11 +25,11 @@ reqs = install_reqs
 
 setup(
     name='RoundBox',
-    version='1.0',
+    version=__version__,
     description='Just a small framework inspired by Django and HomeAssistant used for IoT monitoring and automation',
     license='GPL-3',
     author='Constantin Zaharia',
-    author_email='constantin.zaharia@github.com',
+    author_email='constantin.zaharia@progeek.ro',
     url='https://github.com/soulraven/roundBox',
     packages=setuptools.find_packages(),
     install_requires=reqs,

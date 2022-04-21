@@ -1,6 +1,6 @@
 #  -*- coding: utf-8 -*-
 
-from RoundBox.const import __version__
+from RoundBox.version import __version__
 
 
 def setup():

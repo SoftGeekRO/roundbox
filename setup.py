@@ -34,9 +34,9 @@ setup(
     author_email='constantin.zaharia@progeek.ro',
     url='https://github.com/soulraven/roundBox',
     project_urls={
-        "Source": "https://github.com/soulraven/roundbox"
+        "Source": "https://github.com/soulraven/roundbox",
         "Bug Tracker": "https://github.com/soulraven/roundbox/issues",
-        'Documentation': "https://soulraven.github.io/roundbox/",
+        "Documentation": "https://soulraven.github.io/roundbox/",
     },
     packages=setuptools.find_packages(),
     install_requires=reqs,

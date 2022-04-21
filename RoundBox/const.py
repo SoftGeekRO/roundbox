@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-
 REQUIRED_PYTHON_VER: Final[tuple[int, int, int]] = (3, 10, 2)
 REQUIRED_NEXT_PYTHON_VER: Final[tuple[int, int, int]] = (3, 11, 0)
 

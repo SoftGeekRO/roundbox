@@ -17,7 +17,7 @@ def parse_requirements(filename):
     return [line for line in lineiter if line and not line.startswith("#")]
 
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 install_reqs = parse_requirements('requirements.txt')
@@ -27,10 +27,17 @@ setup(
     name='RoundBox',
     version=__version__,
     description='Just a small framework inspired by Django and HomeAssistant used for IoT monitoring and automation',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     license='GPL-3',
     author='Constantin Zaharia',
     author_email='constantin.zaharia@progeek.ro',
     url='https://github.com/soulraven/roundBox',
+    project_urls={
+        "Source": "https://github.com/soulraven/roundbox"
+        "Bug Tracker": "https://github.com/soulraven/roundbox/issues",
+        'Documentation': "https://soulraven.github.io/roundbox/",
+    },
     packages=setuptools.find_packages(),
     install_requires=reqs,
     provides=['RoundBox'],
@@ -44,4 +51,5 @@ setup(
         'Programming Language :: Python :: 3.11',
     ],
     zip_safe=True,
+    python_requires=">=3.10",
 )

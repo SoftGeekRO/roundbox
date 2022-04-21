@@ -101,7 +101,7 @@ clean-test: ## remove test and coverage artifacts
 
 publish: ## publish a release to pypi.
 	@echo "🚀 Publishing: Dry run."
-	@poetry config pypi-token.pypi $(PYPI_API_TOKEN)
+	@poetry config pypi-token.pypi $(PYPI_TOKEN)
 	@poetry publish --dry-run
 	@echo "🚀 Publishing."
 	@poetry publish

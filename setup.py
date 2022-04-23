@@ -4,7 +4,7 @@
 import setuptools
 from setuptools import setup
 
-from RoundBox import __version__
+from RoundBox.version import __version__
 
 
 def parse_requirements(filename):
@@ -35,7 +35,8 @@ setup(
     url='https://github.com/soulraven/roundBox',
     project_urls={
         "Source": "https://github.com/soulraven/roundbox",
-        "Bug Tracker": "https://github.com/soulraven/roundbox/issues",
+        "Issues": "https://github.com/soulraven/roundbox/issues",
+        "Discussions": "https://github.com/soulraven/roundbox/discussions",
         "Documentation": "https://soulraven.github.io/roundbox/",
     },
     packages=setuptools.find_packages(),

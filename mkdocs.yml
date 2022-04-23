@@ -4,26 +4,45 @@ site_url: https://soulraven.github.io/roundbox
 site_description: A small lightweight framework for IoT applications
 site_author: Zaharia Constantin
 copyright: Maintained by <a href="https://progeek.ro">SoulRaven</a>.
-
+edit_uri: ""
 nav:
   - Home: index.md
   - Jobs: jobs/jobs_scheduling.md
+  - Libraries: libraries.md
+  - About:
+    - Changelog: changelog.md
+    - License: license.md
 plugins:
   - search
 
 theme:
   name: material
   feature:
-    tabs: true
+    tabs: True
   palette:
-    primary: white
-    accent: blue
+    - scheme: default
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+  features:
+    - navigation.tabs
 
 extra:
-  generator: false
+  generator: true
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/soulraven
+      name: SoulRaven Github Profile
+
 
 markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.snippets:
+

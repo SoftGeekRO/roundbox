@@ -58,6 +58,27 @@ test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
 	@pytest -s --doctest-modules tests
 
+bump-version: ## Bump the project version
+	@poetry version $(PROJECT_VERSION)
+
+## --- Build and publish packages --- ##
+.PHONY: build
+build: clean-build bump-version ## Build wheel file using poetry
+	@echo "🚀 Creating wheel file"
+	@poetry build
+
+.PHONY: publish
+publish: ## publish a release to pypi.
+	@echo "🚀 Publishing: Dry run."
+	@echo $(PYPI_TOKEN)
+	@poetry config pypi-token.pypi $(PYPI_TOKEN)
+	@poetry publish --dry-run
+	@echo "🚀 Publishing."
+	@poetry publish
+
+.PHONY: build-and-publish
+build-and-publish: build publish ## Build and publish.
+
 ## --- Cleanup targets --- ##
 
 .PHONY: clean
@@ -65,10 +86,6 @@ clean: clean-all ## alias for 'clean-all' target
 
 .PHONY: clean-all
 clean-all: clean-build clean-pyc clean-test ## remove all artifacts
-
-build: clean-build ## Build wheel file using poetry
-	@echo "🚀 Creating wheel file"
-	@poetry build
 
 .PHONY: clean-build
 clean-build: ## remove build artifacts
@@ -98,16 +115,6 @@ clean-test: ## remove test and coverage artifacts
 	@-rm -fr "$(APP_ROOT)/coverage/"
 	@-rm -fr "$(APP_ROOT)/node_modules"
 	@-rm -f "$(APP_ROOT)/package-lock.json"
-
-publish: ## publish a release to pypi.
-	@echo "🚀 Publishing: Dry run."
-	@echo $(PYPI_TOKEN)
-	@poetry config pypi-token.pypi $(PYPI_TOKEN)
-	@poetry publish --dry-run
-	@echo "🚀 Publishing."
-	@poetry publish
-
-build-and-publish: build publish ## Build and publish.
 
 docs-test: ## Test if documentation can be built without warnings or errors
 	@mkdocs build -s

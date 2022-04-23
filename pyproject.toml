@@ -1,19 +1,26 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "RoundBox"
-version = "0.1.0"
+version = "2022.4.22"
 description = "A small lightweight framework for IoT applications"
 authors = ["Zaharia Constantin <layout.webdesign@gmail.com>"]
+license = "LICENSE.md"
+readme = "README.md"
 repository = "https://github.com/soulraven/roundbox"
 documentation = "https://soulraven.github.io/roundbox/"
-readme = "README.md"
-keywords = ['roundbox', 'template', 'poetry']
+keywords = [
+  'roundbox',
+  'template',
+  'poetry'
+]
 packages = [
   {include = "RoundBox"}
 ]
 include = [
-  '{{roundbox.project_name}}/**/*',
-  'roundbox.json',
-  'hooks/*'
+
 ]
 
 [tool.poetry.dependencies]
@@ -36,11 +43,10 @@ mkdocs-material = "^8.2.9"
 [tool.poetry.scripts]
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/soulraven/roundbox/issues"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+"Source" = "https://github.com/soulraven/roundbox"
+"Issues" = "https://github.com/soulraven/roundbox/issues"
+"Discussions" = "https://github.com/soulraven/roundbox/discussions"
+"Documentation" = "https://soulraven.github.io/roundbox/"
 
 [tool.black]
 skip-string-normalization = true

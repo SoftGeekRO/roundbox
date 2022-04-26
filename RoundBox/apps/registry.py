@@ -7,6 +7,7 @@ import threading
 from collections import Counter
 
 from RoundBox.core.exceptions import AppRegistryNotReady, ImproperlyConfigured
+
 from .config import AppConfig
 
 

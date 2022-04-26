@@ -40,6 +40,7 @@ setup(
         "Documentation": "https://soulraven.github.io/roundbox/",
     },
     packages=setuptools.find_packages(),
+    setup_requires=["isort", "black"],
     install_requires=reqs,
     provides=['RoundBox'],
     classifiers=[

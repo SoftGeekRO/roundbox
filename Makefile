@@ -110,19 +110,27 @@ clean-test: ## remove test and coverage artifacts
 	@echo "Cleaning tests artifacts..."
 	@-rm -fr .tox/
 	@-rm -fr .pytest_cache/
+	@-rm -fr htmlcov/
 	@-rm -f .coverage*
 	@-rm -f coverage.*
 	@-rm -fr "$(APP_ROOT)/coverage/"
 	@-rm -fr "$(APP_ROOT)/node_modules"
 	@-rm -f "$(APP_ROOT)/package-lock.json"
 
+.PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@mkdocs build -s
 
-docs: ## Build and serve the documentation
-	@mkdocs serve
+.PHONY: coverage
+coverage: ## Generate coverage reports
+	@coverage erase
+	@coverage run --source $(APP_ROOT) setup.py test
+	@coverage report -m --skip-empty
+	@coverage html -q
 
 .PHONY: docs
+docs: ## Build and serve the documentation
+	@mkdocs serve
 
 .PHONY: help
 help:

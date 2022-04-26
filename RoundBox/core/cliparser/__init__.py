@@ -15,7 +15,7 @@ from importlib import import_module
 import RoundBox
 from RoundBox.apps import apps
 from RoundBox.conf.project_settings import settings
-from RoundBox.const import __version__
+from RoundBox.version import __version__
 from RoundBox.core.cliparser.base import (
     BaseCommand,
     CommandError,

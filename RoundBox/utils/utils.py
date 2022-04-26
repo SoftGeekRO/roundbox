@@ -11,7 +11,8 @@ from importlib import import_module
 
 import pkg_resources
 
-from RoundBox.const import REQUIRED_PYTHON_VER, __version__
+from RoundBox.const import REQUIRED_PYTHON_VER
+from RoundBox.version import __version__
 
 
 def load_arguments() -> tuple[ArgumentParser, tuple[Namespace, list[str]]]:

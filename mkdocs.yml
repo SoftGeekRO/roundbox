@@ -22,7 +22,7 @@ nav:
 
 plugins:
   - search
-  - coverage
+#  - coverage
   - gen-files:
       scripts:
       - docs/gen_credits.py

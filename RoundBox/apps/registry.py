@@ -2,12 +2,9 @@
 
 # Check the LICENSE FILE
 
-import functools
 import sys
 import threading
-import warnings
-from collections import Counter, defaultdict
-from functools import partial
+from collections import Counter
 
 from RoundBox.core.exceptions import AppRegistryNotReady, ImproperlyConfigured
 from .config import AppConfig

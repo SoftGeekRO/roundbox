@@ -15,7 +15,6 @@ from importlib import import_module
 import RoundBox
 from RoundBox.apps import apps
 from RoundBox.conf.project_settings import settings
-from RoundBox.version import __version__
 from RoundBox.core.cliparser.base import (
     BaseCommand,
     CommandError,
@@ -25,6 +24,7 @@ from RoundBox.core.cliparser.base import (
 from RoundBox.core.cliparser.color import color_style
 from RoundBox.core.exceptions import ImproperlyConfigured
 from RoundBox.utils import autoreload
+from RoundBox.version import __version__
 
 
 def find_commands(cliparser_dir):

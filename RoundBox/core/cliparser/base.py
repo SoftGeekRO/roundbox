@@ -7,9 +7,9 @@ import sys
 from argparse import ArgumentParser, HelpFormatter
 from io import TextIOBase
 
-from RoundBox.version import __version__
 from RoundBox.core import checks
 from RoundBox.core.cliparser.color import color_style, no_style
+from RoundBox.version import __version__
 
 ALL_CHECKS = "__all__"
 

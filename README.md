@@ -1,5 +1,6 @@
 # ⚡ RoundBox
 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![PyPI](https://img.shields.io/pypi/v/roundbox?label=RoundBox&style=plastic)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/soulraven/roundbox?style=plastic)
 [![Build status](https://img.shields.io/github/workflow/status/soulraven/roundbox/merge-to-main?style=plastic)](https://img.shields.io/github/workflow/status/soulraven/roundbox/merge-to-main)

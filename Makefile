@@ -62,6 +62,7 @@ bump-version: ## Bump the project version
 	@poetry version $(PROJECT_VERSION)
 
 ## --- Build and publish packages --- ##
+
 .PHONY: build
 build: clean-build bump-version ## Build wheel file using poetry
 	@echo "🚀 Creating wheel file"
@@ -117,9 +118,15 @@ clean-test: ## remove test and coverage artifacts
 	@-rm -fr "$(APP_ROOT)/node_modules"
 	@-rm -f "$(APP_ROOT)/package-lock.json"
 
+## --- Documentation section --- ##
+
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
 	@mkdocs build -s
+
+.PHONY: docs
+docs: ## Build and serve the documentation
+	@mkdocs serve
 
 .PHONY: coverage
 coverage: ## Generate coverage reports
@@ -127,10 +134,6 @@ coverage: ## Generate coverage reports
 	@coverage run --source $(APP_ROOT) setup.py test
 	@coverage report -m --skip-empty
 	@coverage html -q
-
-.PHONY: docs
-docs: ## Build and serve the documentation
-	@mkdocs serve
 
 .PHONY: help
 help:

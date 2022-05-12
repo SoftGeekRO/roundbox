@@ -2,15 +2,6 @@
 requires = ["poetry_core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[project]
-name = "RoundBox"
-requires-python = ">=3.10"
-
-[tool.setuptools.dynamic]
-
-[tool.setuptools.packages]
-find = {}  # Scan the project directory with the default parameters
-
 [tool.poetry]
 name = "RoundBox"
 version = "2022.4.22"

@@ -6,10 +6,7 @@ import site
 import sys
 from distutils.sysconfig import get_python_lib
 
-import setuptools
 from setuptools import setup
-
-from RoundBox.version import __version__
 
 # Allow editable install into user site directory.
 # See https://github.com/pypa/pip/issues/7953.
@@ -32,19 +29,6 @@ if "install" in sys.argv:
             # command is run, so it's more likely to be seen.
             overlay_warning = True
             break
-
-
-def parse_requirements(filename):
-    """load requirements from a pip requirements file
-
-    :param filename:
-    :return:
-    """
-    lineiter = (line.strip() for line in open(filename))
-    return [line for line in lineiter if line and not line.startswith("#")]
-
-
-install_reqs = parse_requirements('requirements.txt')
 
 setup()
 

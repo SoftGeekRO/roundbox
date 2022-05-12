@@ -79,13 +79,16 @@ def test_tox(script_loc):
     :return:
     """
     assert file_contains_text(
-        script_loc.joinpath(".github/workflows/on-release-main.yml"), "poetry add tox-gh-actions"
+        script_loc.joinpath(".github/workflows/on-release-main.yml"),
+        "poetry add tox-gh-actions",
     )
     assert file_contains_text(
-        script_loc.joinpath(".github/workflows/on-merge-to-main.yml"), "poetry add tox-gh-actions"
+        script_loc.joinpath(".github/workflows/on-merge-to-main.yml"),
+        "poetry add tox-gh-actions",
     )
     assert file_contains_text(
-        script_loc.joinpath(".github/workflows/on-pull-request.yml"), "poetry add tox-gh-actions"
+        script_loc.joinpath(".github/workflows/on-pull-request.yml"),
+        "poetry add tox-gh-actions",
     )
     assert os.path.isfile(script_loc.joinpath("tox.ini"))
 

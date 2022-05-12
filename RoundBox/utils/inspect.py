@@ -21,7 +21,9 @@ def _get_callable_parameters(meth_or_func):
 def get_func_args(func):
     params = _get_callable_parameters(func)
     return [
-        param.name for param in params if param.kind == inspect.Parameter.POSITIONAL_OR_KEYWORD
+        param.name
+        for param in params
+        if param.kind == inspect.Parameter.POSITIONAL_OR_KEYWORD
     ]
 
 
@@ -67,7 +69,9 @@ def func_accepts_var_args(func):
 
 def method_has_no_args(meth):
     """Return True if a method only accepts 'self'."""
-    count = len([p for p in _get_callable_parameters(meth) if p.kind == p.POSITIONAL_OR_KEYWORD])
+    count = len(
+        [p for p in _get_callable_parameters(meth) if p.kind == p.POSITIONAL_OR_KEYWORD]
+    )
     return count == 0 if inspect.ismethod(meth) else count == 1
 
 

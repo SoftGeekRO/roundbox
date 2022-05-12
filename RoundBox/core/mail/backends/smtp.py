@@ -37,7 +37,9 @@ class EmailBackend(BaseEmailBackend):
         self.password = settings.EMAIL_HOST_PASSWORD if password is None else password
         self.oauth = settings.EMAIL_OAUTH2 if oauth_file is None else oauth_file
 
-        self.use_tls = settings.EMAIL_START_TLS if smtp_starttls is None else smtp_starttls
+        self.use_tls = (
+            settings.EMAIL_START_TLS if smtp_starttls is None else smtp_starttls
+        )
         self.use_ssl = settings.EMAIL_SSL if smtp_ssl is None else smtp_ssl
 
         if self.use_ssl and self.use_tls:
@@ -47,7 +49,9 @@ class EmailBackend(BaseEmailBackend):
             )
 
         self.use_dkim = settings.EMAIL_USE_DKIM if use_dkim is None else use_dkim
-        self.dkim_domain = settings.EMAIL_DKIM_DOMAIN if dkim_domain is None else dkim_domain
+        self.dkim_domain = (
+            settings.EMAIL_DKIM_DOMAIN if dkim_domain is None else dkim_domain
+        )
         self.dkim_selector = (
             settings.EMAIL_DKIM_SELECTOR if dkim_selector is None else dkim_selector
         )

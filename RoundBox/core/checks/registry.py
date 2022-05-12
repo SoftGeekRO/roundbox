@@ -11,7 +11,9 @@ class Tags:
 
     caches = "caches"  # Checks cache related configuration.
     files = "files"  # Checks file related configuration.
-    runtime = "runtime"  # Checks if the project and application meet the minimum requirements
+    runtime = (
+        "runtime"  # Checks if the project and application meet the minimum requirements
+    )
     security = "security"  # Checks security related configuration.
     signals = "signals"  # Checks on signal declarations and handler registrations.
 
@@ -40,9 +42,15 @@ class CheckRegistry:
 
         def inner(check):
             if not func_accepts_kwargs(check):
-                raise TypeError("Check functions must accept keyword arguments (**kwargs).")
+                raise TypeError(
+                    "Check functions must accept keyword arguments (**kwargs)."
+                )
             check.tags = tags
-            checks = self.deployment_checks if kwargs.get("deploy") else self.registered_checks
+            checks = (
+                self.deployment_checks
+                if kwargs.get("deploy")
+                else self.registered_checks
+            )
             checks.add(check)
             return check
 
@@ -82,7 +90,11 @@ class CheckRegistry:
         return tag in self.tags_available(include_deployment_checks)
 
     def tags_available(self, deployment_checks=False):
-        return set(chain.from_iterable(check.tags for check in self.get_checks(deployment_checks)))
+        return set(
+            chain.from_iterable(
+                check.tags for check in self.get_checks(deployment_checks)
+            )
+        )
 
     def get_checks(self, include_deployment_checks=False):
         checks = list(self.registered_checks)

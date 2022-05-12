@@ -22,7 +22,9 @@ class Command(BaseCommand):
         :return:
         """
         super().add_arguments(parser)
-        parser.add_argument('setting', nargs='*', help='Specifies setting to be printed.')
+        parser.add_argument(
+            'setting', nargs='*', help='Specifies setting to be printed.'
+        )
         parser.add_argument(
             '-f',
             '--fail',
@@ -56,12 +58,18 @@ class Command(BaseCommand):
             settings_dct = {
                 key: value
                 for key, value in settings_dct.items()
-                if any(fnmatch.fnmatchcase(key, setting_name) for setting_name in setting_names)
+                if any(
+                    fnmatch.fnmatchcase(key, setting_name)
+                    for setting_name in setting_names
+                )
             }
 
         if options['fail']:
             for setting_name in setting_names:
-                if not any(fnmatch.fnmatchcase(key, setting_name) for key in settings_dct.keys()):
+                if not any(
+                    fnmatch.fnmatchcase(key, setting_name)
+                    for key in settings_dct.keys()
+                ):
                     raise CommandError('%s not found in settings.' % setting_name)
 
         output_format = options['format']

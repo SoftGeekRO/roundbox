@@ -92,7 +92,9 @@ class Signal:
                 raise TypeError('Signal receivers must be callable.')
             # Check for **kwargs
             if not func_accepts_kwargs(receiver):
-                raise ValueError("Signal receivers must accept keyword arguments (**kwargs).")
+                raise ValueError(
+                    "Signal receivers must accept keyword arguments (**kwargs)."
+                )
 
         if dispatch_uid:
             lookup_key = (dispatch_uid, _make_id(sender))
@@ -172,7 +174,10 @@ class Signal:
 
         Return a list of tuple pairs [(receiver, response), ... ].
         """
-        if not self.receivers or self.sender_receivers_cache.get(sender) is NO_RECEIVERS:
+        if (
+            not self.receivers
+            or self.sender_receivers_cache.get(sender) is NO_RECEIVERS
+        ):
             return []
 
         return [
@@ -199,7 +204,10 @@ class Signal:
         If any receiver raises an error (specifically any subclass of
         Exception), return the error instance as the result for that receiver.
         """
-        if not self.receivers or self.sender_receivers_cache.get(sender) is NO_RECEIVERS:
+        if (
+            not self.receivers
+            or self.sender_receivers_cache.get(sender) is NO_RECEIVERS
+        ):
             return []
 
         # Call each receiver with whatever arguments it can accept.

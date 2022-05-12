@@ -12,11 +12,21 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     help = "Runs scheduled maintenance jobs."
 
-    when_options = ['minutely', 'quarter_hourly', 'hourly', 'daily', 'weekly', 'monthly', 'yearly']
+    when_options = [
+        'minutely',
+        'quarter_hourly',
+        'hourly',
+        'daily',
+        'weekly',
+        'monthly',
+        'yearly',
+    ]
 
     def add_arguments(self, parser):
         super().add_arguments(parser)
-        parser.add_argument('when', nargs='?', help="options: %s" % ', '.join(self.when_options))
+        parser.add_argument(
+            'when', nargs='?', help="options: %s" % ', '.join(self.when_options)
+        )
         parser.add_argument(
             '--list',
             '-l',
@@ -39,7 +49,9 @@ class Command(BaseCommand):
             try:
                 job().execute()
             except Exception:
-                logger.exception("ERROR OCCURED IN JOB: %s (APP: %s)", job_name, app_name)
+                logger.exception(
+                    "ERROR OCCURED IN JOB: %s (APP: %s)", job_name, app_name
+                )
 
     def runjobs_by_signals(self, when, options):
         """Run jobs from the signals

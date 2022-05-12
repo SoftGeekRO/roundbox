@@ -11,7 +11,9 @@ from RoundBox.conf.project_settings import settings
 from RoundBox.core.cliparser.base import BaseCommand, CommandError
 from RoundBox.core.cliparser.utils import signalcommand
 
-ANNOTATION_RE = re.compile(r"\{?#[\s]*?(TODO|FIXME|BUG|HACK|WARNING|NOTE|XXX)[\s:]?(.+)")
+ANNOTATION_RE = re.compile(
+    r"\{?#[\s]*?(TODO|FIXME|BUG|HACK|WARNING|NOTE|XXX)[\s:]?(.+)"
+)
 ANNOTATION_END_RE = re.compile(r"(.*)#\}(.*)")
 
 
@@ -59,11 +61,15 @@ class Command(BaseCommand):
                                 if ANNOTATION_RE.search(line):
                                     tag, msg = ANNOTATION_RE.findall(line)[0]
                                     if options['tag']:
-                                        if tag not in map(str.upper, map(str, options['tag'])):
+                                        if tag not in map(
+                                            str.upper, map(str, options['tag'])
+                                        ):
                                             break
 
                                     if ANNOTATION_END_RE.search(msg.strip()):
-                                        msg = ANNOTATION_END_RE.findall(msg.strip())[0][0]
+                                        msg = ANNOTATION_END_RE.findall(msg.strip())[0][
+                                            0
+                                        ]
 
                                     annotation_lines.append(
                                         "[%3s] %-5s %s" % (i, tag, msg.strip())

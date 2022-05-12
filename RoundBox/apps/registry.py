@@ -85,7 +85,9 @@ class Apps:
                 app_config.apps = self
 
             # Check for duplicate app names.
-            counts = Counter(app_config.name for app_config in self.app_configs.values())
+            counts = Counter(
+                app_config.name for app_config in self.app_configs.values()
+            )
 
             duplicates = [name for name, count in counts.most_common() if count > 1]
             if duplicates:

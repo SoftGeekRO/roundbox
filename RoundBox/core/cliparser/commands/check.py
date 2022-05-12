@@ -74,13 +74,17 @@ class Command(BaseCommand):
         if tags:
             try:
                 invalid_tag = next(
-                    tag for tag in tags if not checks.tag_exists(tag, include_deployment_checks)
+                    tag
+                    for tag in tags
+                    if not checks.tag_exists(tag, include_deployment_checks)
                 )
             except StopIteration:
                 # no invalid tags
                 pass
             else:
-                raise CommandError('There is no system check with the "%s" tag.' % invalid_tag)
+                raise CommandError(
+                    'There is no system check with the "%s" tag.' % invalid_tag
+                )
 
         self.check(
             app_configs=app_configs,

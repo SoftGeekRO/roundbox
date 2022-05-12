@@ -25,21 +25,34 @@ def load_arguments() -> tuple[ArgumentParser, tuple[Namespace, list[str]]]:
         epilog="For more information read the documentation",
     )
 
-    parser.add_argument("--debug", type=bool, default=False, help="RoundBox in debug mode")
+    parser.add_argument(
+        "--debug", type=bool, default=False, help="RoundBox in debug mode"
+    )
 
     parser.add_argument(
-        '--auth-type', type=str, default=None, help="Authentication type on the API service"
+        '--auth-type',
+        type=str,
+        default=None,
+        help="Authentication type on the API service",
     )
-    parser.add_argument("--username", type=str, default="", help="Growatt username account")
-    parser.add_argument("--password", type=str, default="", help="Growatt password account")
-    parser.add_argument("--api-key-token", type=str, default="", help="Growatt API KEY TOKEN")
+    parser.add_argument(
+        "--username", type=str, default="", help="Growatt username account"
+    )
+    parser.add_argument(
+        "--password", type=str, default="", help="Growatt password account"
+    )
+    parser.add_argument(
+        "--api-key-token", type=str, default="", help="Growatt API KEY TOKEN"
+    )
     parser.add_argument(
         "--plant-id",
         type=int,
         default=0,
         help="ID of the plant that you want to get the " "information",
     )
-    parser.add_argument("--user-id", type=int, default=None, help="ID of the logged user")
+    parser.add_argument(
+        "--user-id", type=int, default=None, help="ID of the logged user"
+    )
     parser.add_argument(
         "--inverter-id",
         type=list,
@@ -47,27 +60,46 @@ def load_arguments() -> tuple[ArgumentParser, tuple[Namespace, list[str]]]:
         help="List of you Growatt inverters, delimited by space",
     )
 
-    parser.add_argument("--owm-key", type=str, default="", help="API key from Open Weather Map")
     parser.add_argument(
-        "--owm-lat", type=float, default=0.0, help="Latitude location for Open Weather Map"
+        "--owm-key", type=str, default="", help="API key from Open Weather Map"
     )
     parser.add_argument(
-        "--owm-lon", type=float, default=0.0, help="Longitude location for Open Weather Map"
+        "--owm-lat",
+        type=float,
+        default=0.0,
+        help="Latitude location for Open Weather Map",
+    )
+    parser.add_argument(
+        "--owm-lon",
+        type=float,
+        default=0.0,
+        help="Longitude location for Open Weather Map",
     )
 
-    parser.add_argument("--pv-output-key", type=str, default="", help="API Key from PVOutput")
+    parser.add_argument(
+        "--pv-output-key", type=str, default="", help="API Key from PVOutput"
+    )
     parser.add_argument(
         "--pv-output-system-id", type=int, default=0, help="System ID from PVOutput"
     )
 
     parser.add_argument(
-        "--influxdb-url", type=str, default="http://localhost:8086", help="InfluxDB URL path"
+        "--influxdb-url",
+        type=str,
+        default="http://localhost:8086",
+        help="InfluxDB URL path",
     )
-    parser.add_argument("--influxdb-token", type=str, default="my-token", help="InfluxDB token")
-    parser.add_argument("--influxdb-org", type=str, default="my-org", help="Influxdb organization")
+    parser.add_argument(
+        "--influxdb-token", type=str, default="my-token", help="InfluxDB token"
+    )
+    parser.add_argument(
+        "--influxdb-org", type=str, default="my-org", help="Influxdb organization"
+    )
 
     parser.add_argument(
-        "--ignore-os-check", action="store_true", help="Skips validation of operating system"
+        "--ignore-os-check",
+        action="store_true",
+        help="Skips validation of operating system",
     )
 
     parser.add_argument(
@@ -96,7 +128,8 @@ def import_string(dotted_path):
         return getattr(module, class_name)
     except AttributeError as err:
         raise ImportError(
-            'Module "%s" does not define a "%s" attribute/class' % (module_path, class_name)
+            'Module "%s" does not define a "%s" attribute/class'
+            % (module_path, class_name)
         ) from err
 
 

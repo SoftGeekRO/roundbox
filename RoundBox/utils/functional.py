@@ -23,7 +23,8 @@ class cached_property:
     @staticmethod
     def func(instance):
         raise TypeError(
-            "Cannot use cached_property instance without calling " "__set_name__() on it."
+            "Cannot use cached_property instance without calling "
+            "__set_name__() on it."
         )
 
     def __init__(self, func):
@@ -113,7 +114,9 @@ class LazyObject:
         """
         Must be implemented by subclasses to initialize the wrapped object.
         """
-        raise NotImplementedError('subclasses of LazyObject must provide a _setup() method')
+        raise NotImplementedError(
+            'subclasses of LazyObject must provide a _setup() method'
+        )
 
     # Because we have messed with __class__ below, we confuse pickle as to what
     # class we are pickling. We're going to have to initialize the wrapped
@@ -261,8 +264,12 @@ class Settings:
             if setting.isupper():
                 setting_value = getattr(mod, setting)
 
-                if setting in tuple_settings and not isinstance(setting_value, (list, tuple)):
-                    raise ImproperlyConfigured(f"The {setting} setting must be a list or a tuple.")
+                if setting in tuple_settings and not isinstance(
+                    setting_value, (list, tuple)
+                ):
+                    raise ImproperlyConfigured(
+                        f"The {setting} setting must be a list or a tuple."
+                    )
 
                 setattr(self, setting, setting_value)
                 self._explicit_settings.add(setting)

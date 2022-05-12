@@ -108,7 +108,8 @@ class CliParserUtility:
         else:
             usage = [
                 "",
-                "Type '%s help <subcommand>' for help on a specific subcommand." % self.prog_name,
+                "Type '%s help <subcommand>' for help on a specific subcommand."
+                % self.prog_name,
                 "",
                 "Available subcommands:",
             ]
@@ -309,7 +310,9 @@ class CliParserUtility:
             elif not options.args:
                 sys.stdout.write(self.main_help_text() + "\n")
             else:
-                self.fetch_command(options.args[0]).print_help(self.prog_name, options.args[0])
+                self.fetch_command(options.args[0]).print_help(
+                    self.prog_name, options.args[0]
+                )
         # special case for --version and --help to work, for backwards compatibility
         elif subcommand == "version" or self.argv[1:] == ["--version"]:
             sys.stdout.write(__version__ + "\n")

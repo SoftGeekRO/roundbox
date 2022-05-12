@@ -166,7 +166,10 @@ class AppConfig:
                     for name, candidate in inspect.getmembers(mod, inspect.isclass)
                     if issubclass(candidate, cls) and candidate is not cls
                 ]
-                msg = "Module '%s' does not contain a '%s' class." % (mod_path, cls_name)
+                msg = "Module '%s' does not contain a '%s' class." % (
+                    mod_path,
+                    cls_name,
+                )
                 if candidates:
                     msg += ' Choices are: %s.' % ', '.join(candidates)
                 raise ImportError(msg)

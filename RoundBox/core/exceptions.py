@@ -140,7 +140,9 @@ class WrongPyVersion(Exception):
 class MissingInstalledPackage(Exception):
     def __init__(self, packages):
         self.packages = packages
-        self.message = "The following packages are not installed from requirements.txt: "
+        self.message = (
+            "The following packages are not installed from requirements.txt: "
+        )
 
         super().__init__(self.message)
 

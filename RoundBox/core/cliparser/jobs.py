@@ -85,7 +85,9 @@ def find_jobs(jobs_dir):
     """
     try:
         return [
-            f[:-3] for f in os.listdir(jobs_dir) if not f.startswith('_') and f.endswith(".py")
+            f[:-3]
+            for f in os.listdir(jobs_dir)
+            if not f.startswith('_') and f.endswith(".py")
         ]
     except OSError:
         return []
@@ -124,7 +126,9 @@ def import_job(app_name, name, when=None):
     try:
         job = job_mod.Job
     except AttributeError:
-        raise JobError("Job module %s does not contain class instance named 'Job'" % jobmodule)
+        raise JobError(
+            "Job module %s does not contain class instance named 'Job'" % jobmodule
+        )
     if when and not (job.when == when or job.when is None):
         raise JobError("Job %s is not a %s job." % (jobmodule, when))
     return job
@@ -200,7 +204,11 @@ def get_job(app_name, job_name):
 
 
 def print_jobs(
-    when=None, only_scheduled=False, show_when=True, show_appname=False, show_header=True
+    when=None,
+    only_scheduled=False,
+    show_when=True,
+    show_appname=False,
+    show_header=True,
 ):
     """
 

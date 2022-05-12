@@ -230,7 +230,9 @@ class LevelFormatter:
         :param fmt:
         :param kwargs:
         """
-        self.formatters = {level: ColoredFormatter(fmt=f, **kwargs) for level, f in fmt.items()}
+        self.formatters = {
+            level: ColoredFormatter(fmt=f, **kwargs) for level, f in fmt.items()
+        }
 
     def format(self, record: logging.LogRecord) -> str:
         return self.formatters[record.levelname].format(record)

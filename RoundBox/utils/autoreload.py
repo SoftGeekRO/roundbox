@@ -134,7 +134,9 @@ def iter_all_python_module_files():
     # aren't loaded on the fly.
     keys = sorted(sys.modules)
     modules = tuple(
-        m for m in map(sys.modules.__getitem__, keys) if not isinstance(m, weakref.ProxyTypes)
+        m
+        for m in map(sys.modules.__getitem__, keys)
+        if not isinstance(m, weakref.ProxyTypes)
     )
     return iter_modules_and_files(modules, frozenset(_error_files))
 
@@ -163,7 +165,11 @@ def iter_modules_and_files(modules, extra_files):
         # Modules could be loaded from places without a concrete location. If
         # this is the case, skip them.
         if spec.has_location:
-            origin = spec.loader.archive if isinstance(spec.loader, zipimporter) else spec.origin
+            origin = (
+                spec.loader.archive
+                if isinstance(spec.loader, zipimporter)
+                else spec.origin
+            )
             sys_file_paths.append(origin)
 
     results = set()
@@ -591,7 +597,9 @@ class WatchmanReloader(BaseReloader):
         sorted_files = sorted(watched_files, key=lambda p: p.parent)
         for directory, group in itertools.groupby(sorted_files, key=lambda p: p.parent):
             # These paths need to be relative to the parent directory.
-            self._subscribe_dir(directory, [str(p.relative_to(directory)) for p in group])
+            self._subscribe_dir(
+                directory, [str(p.relative_to(directory)) for p in group]
+            )
 
     def update_watches(self):
         try:
@@ -706,7 +714,9 @@ def start_roundbox(reloader, main_func, *args, **kwargs):
             # becomes unavailable. In that case, use the StatReloader.
             reloader = StatReloader()
             logger.error("Error connecting to Watchman: %s", ex)
-            logger.info("Watching for file changes with %s", reloader.__class__.__name__)
+            logger.info(
+                "Watching for file changes with %s", reloader.__class__.__name__
+            )
 
 
 def run_with_reloader(main_func, *args, **kwargs):
@@ -723,7 +733,9 @@ def run_with_reloader(main_func, *args, **kwargs):
     try:
         if os.environ.get(ROUNDBOX_AUTORELOAD_ENV) == "true":
             reloader = get_reloader()
-            logger.info("Watching for file changes with %s", reloader.__class__.__name__)
+            logger.info(
+                "Watching for file changes with %s", reloader.__class__.__name__
+            )
             start_roundbox(reloader, main_func, *args, **kwargs)
         else:
             exit_code = restart_with_reloader()

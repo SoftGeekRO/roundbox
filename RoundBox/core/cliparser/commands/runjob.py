@@ -40,7 +40,9 @@ class Command(BaseCommand):
             job = get_job(app_name, job_name)
         except KeyError:
             if app_name:
-                logger.error("Error: Job %s for applabel %s not found", job_name, app_name)
+                logger.error(
+                    "Error: Job %s for applabel %s not found", job_name, app_name
+                )
             else:
                 logger.error("Error: Job %s not found", job_name)
             logger.info("Use -l option to view all the available jobs")

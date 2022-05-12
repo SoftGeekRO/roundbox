@@ -27,7 +27,11 @@ class Command(BaseCommand):
         :return:
         """
         parser.add_argument(
-            '--path', '-p', action='store', dest='path', help='Specify path to recurse into'
+            '--path',
+            '-p',
+            action='store',
+            dest='path',
+            help='Specify path to recurse into',
         )
 
     @signalcommand
@@ -44,7 +48,9 @@ class Command(BaseCommand):
 
         verbosity = options["verbosity"]
         if not project_root:
-            raise CommandError("No --path specified and settings.py does not contain BASE_DIR")
+            raise CommandError(
+                "No --path specified and settings.py does not contain BASE_DIR"
+            )
 
         for root, dirs, filenames in os.walk(project_root):
             for filename in fnmatch.filter(filenames, '*.py'):

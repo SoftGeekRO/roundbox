@@ -27,7 +27,9 @@ class Throttle:
     Adds a datetime attribute `last_call` to the method.
     """
 
-    def __init__(self, min_time: timedelta, limit_no_throttle: timedelta | None = None) -> None:
+    def __init__(
+        self, min_time: timedelta, limit_no_throttle: timedelta | None = None
+    ) -> None:
         """Initialize the throttle.
 
         :param min_time:

@@ -134,7 +134,8 @@ class Command(BaseCommand):
             req_files = [
                 "requirements/{0}".format(f)
                 for f in os.listdir("requirements")
-                if os.path.isfile(os.path.join("requirements", f)) and f.lower().endswith(".txt")
+                if os.path.isfile(os.path.join("requirements", f))
+                and f.lower().endswith(".txt")
             ]
         elif os.path.exists("requirements-dev.txt"):
             req_files = ["requirements-dev.txt"]
@@ -231,7 +232,9 @@ class Command(BaseCommand):
                     try:
                         available = pypi.package_releases(
                             req["pip_req"].name, True
-                        ) or pypi.package_releases(req["pip_req"].name.replace('-', '_'), True)
+                        ) or pypi.package_releases(
+                            req["pip_req"].name.replace('-', '_'), True
+                        )
                         retry = False
                         sleep(1)  # crude way slow down to avoid HTTPTooManyRequests
                     except Fault as err:
@@ -255,7 +258,9 @@ class Command(BaseCommand):
                     msg = "up to date"
                     del self.reqs[name]
                     continue
-                pkg_info = self.style.BOLD("{dist.project_name} {dist.version}".format(dist=dist))
+                pkg_info = self.style.BOLD(
+                    "{dist.project_name} {dist.version}".format(dist=dist)
+                )
             else:
                 msg = "not installed"
                 pkg_info = name
@@ -310,7 +315,11 @@ class Command(BaseCommand):
                 headers["Authorization"] = "token {0}".format(self.github_api_token)
             try:
                 path_parts = (
-                    urlparse(req_url).path.split("#", 1)[0].strip("/").rstrip("/").split("/")
+                    urlparse(req_url)
+                    .path.split("#", 1)[0]
+                    .strip("/")
+                    .rstrip("/")
+                    .split("/")
                 )
 
                 if len(path_parts) == 2:
@@ -320,13 +329,17 @@ class Command(BaseCommand):
                     # Supports URL of format:
 
                     user, repo = path_parts[:2]
-                    repo += '@' + path_parts[-1].replace('.tar.gz', '').replace('.zip', '')
+                    repo += '@' + path_parts[-1].replace('.tar.gz', '').replace(
+                        '.zip', ''
+                    )
 
                 else:
                     self.style.ERROR("\nFailed to parse %r\n" % (req_url,))
                     continue
             except (ValueError, IndexError) as e:
-                self.stdout.write(self.style.ERROR("\nFailed to parse %r: %s\n" % (req_url, e)))
+                self.stdout.write(
+                    self.style.ERROR("\nFailed to parse %r: %s\n" % (req_url, e))
+                )
                 continue
 
             try:
@@ -338,7 +351,9 @@ class Command(BaseCommand):
                 return
 
             if "message" in test_auth and test_auth["message"] == "Bad credentials":
-                self.stdout.write(self.style.ERROR("\nGithub API: Bad credentials. Aborting!\n"))
+                self.stdout.write(
+                    self.style.ERROR("\nGithub API: Bad credentials. Aborting!\n")
+                )
                 return
             elif "message" in test_auth and test_auth["message"].startswith(
                 "API Rate Limit Exceeded"
@@ -365,10 +380,14 @@ class Command(BaseCommand):
                 )
                 branch_data = requests.get(branch_url, headers=headers).json()
 
-                frozen_commit_url = "https://api.github.com/repos/{0}/{1}/commits/{2}".format(
-                    user, repo_name, frozen_commit_sha
+                frozen_commit_url = (
+                    "https://api.github.com/repos/{0}/{1}/commits/{2}".format(
+                        user, repo_name, frozen_commit_sha
+                    )
                 )
-                frozen_commit_data = requests.get(frozen_commit_url, headers=headers).json()
+                frozen_commit_data = requests.get(
+                    frozen_commit_url, headers=headers
+                ).json()
 
                 if (
                     "message" in frozen_commit_data
@@ -385,7 +404,9 @@ class Command(BaseCommand):
                     msg = self.style.BOLD("up to date")
                 else:
                     msg = self.style.INFO(
-                        "{0} is not the head of any branch".format(frozen_commit_data["sha"][:10])
+                        "{0} is not the head of any branch".format(
+                            frozen_commit_data["sha"][:10]
+                        )
                     )
 
             if "dist" in req:
@@ -406,11 +427,15 @@ class Command(BaseCommand):
         """
         if self.reqs:
             self.stdout.write(
-                self.style.ERROR("\nOnly pypi and github based requirements are supported:")
+                self.style.ERROR(
+                    "\nOnly pypi and github based requirements are supported:"
+                )
             )
             for name, req in self.reqs.items():
                 if "dist" in req:
-                    pkg_info = "{dist.project_name} {dist.version}".format(dist=req["dist"])
+                    pkg_info = "{dist.project_name} {dist.version}".format(
+                        dist=req["dist"]
+                    )
                 elif "url" in req:
                     pkg_info = "{url}".format(url=req["url"])
                 else:

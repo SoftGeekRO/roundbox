@@ -46,7 +46,9 @@ class CommandParser(ArgumentParser):
     command is called programmatically.
     """
 
-    def __init__(self, *, missing_args_message=None, called_from_command_line=None, **kwargs):
+    def __init__(
+        self, *, missing_args_message=None, called_from_command_line=None, **kwargs
+    ):
         self.missing_args_message = missing_args_message
         self.called_from_command_line = called_from_command_line
         super().__init__(**kwargs)
@@ -96,7 +98,9 @@ class RoundBoxHelpFormatter(HelpFormatter):
     }
 
     def _reordered_actions(self, actions):
-        return sorted(actions, key=lambda a: set(a.option_strings) & self.show_last != set())
+        return sorted(
+            actions, key=lambda a: set(a.option_strings) & self.show_last != set()
+        )
 
     def add_usage(self, usage, actions, *args, **kwargs):
         super().add_usage(usage, self._reordered_actions(actions), *args, **kwargs)
@@ -276,7 +280,8 @@ class BaseCommand:
         self.add_base_argument(
             parser,
             "--pythonpath",
-            help="A directory to add to the Python path, e.g. " '"/home/RoundBox/myproject".',
+            help="A directory to add to the Python path, e.g. "
+            '"/home/RoundBox/myproject".',
         )
         self.add_base_argument(
             parser,
@@ -368,7 +373,9 @@ class BaseCommand:
         force-skipped).
         """
         if options["force_color"] and options["no_color"]:
-            raise CommandError("The --no-color and --force-color options can't be used together.")
+            raise CommandError(
+                "The --no-color and --force-color options can't be used together."
+            )
         if options["force_color"]:
             self.style = color_style(force_color=True)
         elif options["no_color"]:
@@ -413,7 +420,9 @@ class BaseCommand:
         visible_issue_count = 0  # excludes silenced warnings
 
         if all_issues:
-            debugs = [e for e in all_issues if e.level < checks.INFO and not e.is_silenced()]
+            debugs = [
+                e for e in all_issues if e.level < checks.INFO and not e.is_silenced()
+            ]
             infos = [
                 e
                 for e in all_issues
@@ -430,7 +439,9 @@ class BaseCommand:
                 if checks.ERROR <= e.level < checks.CRITICAL and not e.is_silenced()
             ]
             criticals = [
-                e for e in all_issues if checks.CRITICAL <= e.level and not e.is_silenced()
+                e
+                for e in all_issues
+                if checks.CRITICAL <= e.level and not e.is_silenced()
             ]
             sorted_issues = [
                 (criticals, "CRITICALS"),
@@ -444,7 +455,9 @@ class BaseCommand:
                 if issues:
                     visible_issue_count += len(issues)
                     formatted = (
-                        self.style.ERROR(str(e)) if e.is_serious() else self.style.WARNING(str(e))
+                        self.style.ERROR(str(e))
+                        if e.is_serious()
+                        else self.style.WARNING(str(e))
                         for e in issues
                     )
                     formatted = "\n".join(sorted(formatted))
@@ -482,7 +495,9 @@ class BaseCommand:
         The actual logic of the command. Subclasses must implement
         this method.
         """
-        raise NotImplementedError("subclasses of BaseCommand must provide a handle() method")
+        raise NotImplementedError(
+            "subclasses of BaseCommand must provide a handle() method"
+        )
 
 
 class AppCommand(BaseCommand):
@@ -509,7 +524,9 @@ class AppCommand(BaseCommand):
         try:
             app_configs = [apps.get_app_config(app_label) for app_label in app_labels]
         except (LookupError, ImportError) as e:
-            raise CommandError("%s. Are you sure your INSTALLED_APPS setting is correct?" % e)
+            raise CommandError(
+                "%s. Are you sure your INSTALLED_APPS setting is correct?" % e
+            )
         output = []
         for app_config in app_configs:
             app_output = self.handle_app_config(app_config, **options)

@@ -1,0 +1,9 @@
+include INSTALL
+include LICENSE
+include MANIFEST.in
+graft RoundBox
+graft docs
+graft extras
+graft tests
+global-exclude __pycache__
+global-exclude *.py[co]

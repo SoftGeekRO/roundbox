@@ -58,7 +58,7 @@ export ROUNDBOX_COLORS="light"
 
 ### 🖇 Library used
 
-A more detailed list you will find here: [Libraries](libraries.md)
+A more detailed list you will find here: [Libraries](https://soulraven.github.io/roundbox/libraries/)
 
 ***
 
@@ -82,5 +82,5 @@ Zaharia Constantin, my [GitHub profile] and [GitHub Page]
 [Github Page]: https://soulraven.github.io/
 [GNU General Public License]: https://www.gnu.org/licenses/quick-guide-gplv3.html
 [pip]: https://pip.pypa.io/en/stable/
-[GPLv3]: license.md
-[Install]: user-guide/topics/install.md
+[GPLv3]: https://soulraven.github.io/roundbox/license
+[Install]: https://soulraven.github.io/roundbox/user-guide/topics/install

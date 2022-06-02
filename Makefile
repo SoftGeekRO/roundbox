@@ -97,10 +97,10 @@ else
 		echo "(!!) ERROR - bad version; expected x.y[.z], where x, y, and z are all integers." >&2; \
 		exit 1; \
 	fi
-	@if git status --porcelain | grep .; then \
-		echo "(!!) ERROR - Git working tree is dirty; commit changes and try again." >&2; \
-		exit 1; \
-	fi
+#	@if git status --porcelain | grep .; then \
+#		echo "(!!) ERROR - Git working tree is dirty; commit changes and try again." >&2; \
+#		exit 1; \
+#	fi
 	@if git tag | grep $(PROJECT_VERSION); then \
 		echo "(!!) ERROR - release $(PROJECT_VERSION) already exists." >&2; \
 		exit 1; \

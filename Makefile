@@ -1,3 +1,7 @@
+ECHOCMD:=/bin/echo -e
+SHELL := /bin/bash
+
+args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 
 PYTHON_VERSION := $(shell python3 --version)
 
@@ -14,6 +18,13 @@ MAKEFILE_NAME := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 
 # Application
 APP_ROOT    := $(abspath $(lastword $(MAKEFILE_NAME))/..)
+
+# it is evaluated when is used (recursively expanded variable)
+# https://ftp.gnu.org/old-gnu/Manuals/make-3.79.1/html_chapter/make_6.html#SEC59
+# get the tag
+git_tag = $(shell git describe --abbrev=0 --tag)
+# regex version project
+tag_regex := ^[0-9]+\.[0-9]+(\.[0-9]+)?$$
 
 BOLD := \033[1m
 RESET := \033[0m
@@ -62,6 +73,39 @@ bump-version: ## Bump the project version
 	@poetry version $(PROJECT_VERSION)
 
 ## --- Build and publish packages --- ##
+
+.PHONY: git-tags-local
+git-tags-local: ## List local repository tags list
+	@echo "Local Tags:"
+	@git tag -n
+
+.PHONY: git-tags-remote
+git-tags-remote: ## List remote repository tags list
+	@echo "Remote tags:"
+	@git ls-remote --tags origin
+
+.PHONY: git-tags
+git-tags: git-tags-local git-tags-remote ## List local and remote repository tags
+
+
+.PHONY: release
+release: ## Create a Github release commit + tag
+ifeq ($(PROJECT_VERSION),)
+	@echo "nothing yet here"
+else
+	@if ! [[ $(PROJECT_VERSION) =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$$ ]]; then \
+		echo "(!!) $(BOLD)$(RED)ERROR$(RESET) - bad version; expected x.y[.z], where x, y, and z are all integers." >&2; \
+		exit 1; \
+	fi
+	@if git status --porcelain | grep .; then \
+		echo "(!!) $(BOLD)$(RED)ERROR$(RESET) - Git working tree is dirty; commit changes and try again." >&2; \
+		exit 1; \
+	fi
+	@if git tag | grep $(PROJECT_VERSION); then \
+		echo "(!!) $(BOLD)$(RED)ERROR$(RESET) - release $(PROJECT_VERSION) already exists." >&2; \
+		exit 1; \
+	fi
+endif
 
 .PHONY: build
 build: clean-build bump-version ## Build wheel file using poetry
@@ -134,6 +178,18 @@ coverage: ## Generate coverage reports
 	@coverage run --source $(APP_ROOT) setup.py test
 	@coverage report -m --skip-empty
 	@coverage html -q
+
+
+## --- Misc --- ##
+
+.PHONY: todos
+todos:  ## Look for TODOs in the source files.
+	@git grep -EIn "TODO|FIXME|XXX" -- './*' ':(exclude)Makefile'
+
+.PHONY: authors
+authors: ## Recreate the AUTHORS.md file with all the authors that have committed to the code
+	@echo "Authors\n=======\n\nA huge thanks to all of our contributors:\n" > docs/AUTHORS.md
+	@git log --raw | grep "^Author: " | cut -d ' ' -f2- | cut -d '<' -f1 | sed 's/^/- /' | sort | uniq >> docs/AUTHORS.md
 
 .PHONY: help
 help:

@@ -7,21 +7,36 @@ copyright: Maintained by <a href="https://progeek.ro">SoulRaven</a>.
 site_dir: "site"
 edit_uri: ""
 
+watch:
+  - README.md
+
 nav:
-  - Home:
-    - Overview: index.md
-    - Changelog: changelog.md
-    - Credits: credits.md
-    - License: license.md
-    - Libraries: libraries.md
+  - Home: index.md
+  - User Guide:
+      #- user-guide/topics/index.md 5 filole b1b, b6, c allonul 4 neuro zaharia
+      - Install: user-guide/topics/install.md
+      - Settings: user-guide/topics/settings.md
+      - Signals: user-guide/topics/signals.md
+      - Schedule: user-guide/topics/jobs_scheduling.md
+  - Releases:
+      - releases/index.md
+      - 0.9: releases/0.9.md
+      - 1.0: releases/1.0.md
+  #- Developer Guide:
+  - About:
+      - Credits: credits.md
+      - Libraries: libraries.md
+      - License: license.md
+  - FAQ: faq/index.md
+      #- Install: faq/install.md
 #  - Code Reference: reference/
 #  - Dev:
 #    - Coverage report: coverage.md
-  - Jobs: jobs/jobs_scheduling.md
   - Author's website: https://soulraven.github.io/
 
 plugins:
   - search
+  - tags
 #  - coverage
   - gen-files:
       scripts:
@@ -29,12 +44,25 @@ plugins:
       - docs/gen_ref_nav.py
   - literate-nav:
       nav_file: SUMMARY.md
+  #- autolinks
+  - awesome-pages
+  - pagenav-generator
 
 theme:
   name: material
-  feature:
+  custom_dir: docs/overrides
+  features:
+    - navigation.instant
+    - navigation.tracking
     - navigation.tabs
+    - navigation.tabs.sticky
+    #- navigation.sections
+    - navigation.indexes
     - navigation.top
+    - toc.integrate
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -46,12 +74,14 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to light mode
-  features:
-    - navigation.tabs
 
 extra_css:
 - css/material.css
 - css/mkdocstrings.css
+
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - js/tablesort.js
 
 extra:
   generator: true
@@ -60,19 +90,35 @@ extra:
       link: https://github.com/soulraven
       name: SoulRaven Github Profile
 
-
 markdown_extensions:
   - admonition
+  - sane_lists
+  - def_list
+  - attr_list
+  - md_in_html
+  - meta
+  - tables
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.emoji
   - pymdownx.magiclink
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
   - pymdownx.snippets:
       check_paths: true
-  - pymdownx.superfences
   - pymdownx.tabbed
-  - pymdownx.tasklist
-  - toc:
-      permalink: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.saneheaders
+#  - toc:
+#      permalink: true
+#      toc_depth: 1
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.snippets:
 

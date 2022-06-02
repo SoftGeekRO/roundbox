@@ -107,6 +107,8 @@ else
 	fi
 	@git add $^ && git commit -m 'Release $(PROJECT_VERSION)'
 	@git tag $(PROJECT_VERSION)
+
+	@git push && git push --tags
 endif
 
 .PHONY: build

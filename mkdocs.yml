@@ -13,7 +13,7 @@ watch:
 nav:
   - Home: index.md
   - User Guide:
-      #- user-guide/topics/index.md 5 filole b1b, b6, c allonul 4 neuro zaharia
+      #- user-guide/topics/index.md
       - Install: user-guide/topics/install.md
       - Settings: user-guide/topics/settings.md
       - Signals: user-guide/topics/signals.md
@@ -36,17 +36,17 @@ nav:
 
 plugins:
   - search
-  - tags
 #  - coverage
   - gen-files:
       scripts:
       - docs/gen_credits.py
       - docs/gen_ref_nav.py
-  - literate-nav:
-      nav_file: SUMMARY.md
   #- autolinks
   - awesome-pages
   - pagenav-generator
+  - tags
+  - literate-nav:
+      nav_file: SUMMARY.md
 
 theme:
   name: material

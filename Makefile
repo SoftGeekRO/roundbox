@@ -43,17 +43,21 @@ info: ## display make information
 	@echo "  Application Name       $(PROJECT_NAME)"
 	@echo "  Application Version    $(PROJECT_VERSION)"
 
+.PHONY: bake
 bake: ## bake without inputs and overwrite if exists.
 	@cookiecutter --no-input . --overwrite-if-exists
 
+.PHONY: bake-with-inputs
 bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@cookiecutter . --overwrite-if-exists
 
+.PHONY: install
 install: ## Install the poetry environment
 	@echo "🚀 Creating virtual environment using pyenv and poetry"
 	@poetry install
 	@poetry shell
 
+.PHONY: format
 format: ## Format code using isort and black.
 	@echo "🚀 Formatting code: Running isort and black"
 	@isort .
@@ -65,10 +69,12 @@ lint: ## Check code formatting using isort and black.
 	@isort --check-only --diff $(APP_ROOT)
 	@black --check $(APP_ROOT)
 
+.PHONY: test
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
 	@pytest -s --doctest-modules tests
 
+.PHONY: bump-version
 bump-version: ## Bump the project version
 	@poetry version $(PROJECT_VERSION)
 

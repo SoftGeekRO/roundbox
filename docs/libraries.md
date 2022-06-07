@@ -1,9 +1,8 @@
 Libraries used for this project
 ===============================
 
+## Markdown
 
-Markdown
-========
 
 As a guide for formatting the Markdown files: [Markdown Guide](https://www.markdownguide.org/)
 
@@ -15,8 +14,7 @@ Used Markdown extensions:
 
 ***
 
-MkDocs Plugins
-==============
+## MkDocs Plugins
 
 Official list for [MkDocs Plugins](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins):
 

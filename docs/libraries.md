@@ -1,8 +1,24 @@
 Libraries used for this project
 ===============================
 
-## Markdown
+## Third Parties libraries
 
+- [Pendulum](https://pendulum.eustace.io/)
+- [Icecream](https://github.com/gruns/icecream)
+- [Loguru](https://github.com/Delgan/loguru)
+- [Rich](https://rich.readthedocs.io/en/stable/index.html#)
+- [tqdm](https://github.com/tqdm/tqdm)
+- [xarray](https://github.com/pydata/xarray)
+- [Polar](https://pola-rs.github.io/polars/)
+- [Seaborn](https://seaborn.pydata.org/)
+- [Result](https://pypi.org/project/result/)
+- [Pydantic](https://docs.pydantic.dev/latest/)
+- [Fastapi](https://fastapi.tiangolo.com/)
+- [Sqlmodel](https://sqlmodel.tiangolo.com/)
+- [httpx](https://github.com/encode/httpx)
+- [python-dotenv](https://saurabh-kumar.com/python-dotenv/)
+
+## Markdown
 
 As a guide for formatting the Markdown files: [Markdown Guide](https://www.markdownguide.org/)
 
